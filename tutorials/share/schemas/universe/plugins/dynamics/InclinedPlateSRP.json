@@ -1,0 +1,54 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Universe/Dynamics/InclinedPlateSRP",
+    "description": "Configuration for InclinedPlateSRP in dynamics plugin",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+        "area",
+        "cs",
+        "cd"
+    ],
+    "properties": {
+        "point": {
+            "$ref": "definitions.json#/definitions/point"
+        },
+        "axes": {
+            "$ref": "definitions.json#/definitions/axes"
+        },
+        "area": {
+            "$ref": "definitions.json#/definitions/area"
+        },
+        "mass": {
+            "$ref": "definitions.json#/definitions/mass"
+        },
+        "normal": {
+            "description": "Direction vector from the FramesPlugin directions book for SRP acceleration computation",
+            "type": "string",
+            "default": "Direction from spacecraft to the Sun"
+        },
+        "cs": {
+            "description": "Specular reflection coefficient (optionally parameterized) for SRP acceleration computation",
+            "$ref": "../../../definitions.json#/definitions/scalar"
+        },
+        "cd": {
+            "description": "Diffuse reflection coefficient (optionally parameterized) for SRP acceleration computation",
+            "$ref": "../../../definitions.json#/definitions/scalar"
+        },
+        "occulters": {
+            "$ref": "definitions.json#/definitions/occulters"
+        },
+        "eclipseEvents": {
+            "$ref": "definitions.json#/definitions/eclipseEvents"
+        },
+        "scaleWithMainComponent": {
+            "$ref": "definitions.json#/definitions/scaleWithMainComponent"
+        },
+        "calibrationAxes": {
+            "$ref": "definitions.json#/definitions/calibrationAxes"
+        },
+        "calibration": {
+            "$ref": "definitions.json#/definitions/calibration"
+        }
+    }
+}

@@ -1,0 +1,184 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Station plugin",
+    "description": "Station setup",
+    "type": "object",
+    "required": [
+        "refEpoch",
+        "refCenter",
+        "refAxis",
+        "mountingType",
+        "heightAboveAntennaFoot",
+        "dryOffset",
+        "stationAlias",
+        "coordinates",
+        "plateMotion"
+    ],
+    "additionalProperties": false,
+    "properties": {
+        "refEpoch": {
+            "description": "Reference epoch for plate motion (where plate motion was zero)",
+            "type": "string"
+        },
+        "refCenter": {
+            "description": "Name of the center point of the station in the frame system (e.g. Earth)",
+            "type": "string"
+        },
+        "refAxis": {
+            "description": "Name of the axes of the station in the frame system (e.g. topocentric axes name)",
+            "type": "string"
+        },
+        "semiMajorAxis": {
+            "description": "Semi-major axis of the body (if provided, this overwrites the value from the body system)",
+            "type": "string"
+        },
+        "inverseOfFlattening": {
+            "description": "Inverse of flattening of the body (if provided, this overwrites the value from the body system)",
+            "type": "string"
+        },
+        "antennaDiameter": {
+            "description": "Antenna dish diameter",
+            "type": "string"
+        },
+        "mountingType": {
+            "description": "Antenna mounting type (e.g. AZ/EL)",
+            "type": "string",
+            "enum": [
+                "AZ/EL",
+                "X'/Y'",
+                "HA/DEC"
+            ]
+        },
+        "mounts": {
+            "description": "Possible tilts for the station, if not matching the topocentric zenith",
+            "type": "array",
+            "items":
+            {
+                "description": "Mount angle in topocentric reference frame",
+                "type": "object",
+                "required": [
+                    "azimuth",
+                    "elevation"
+                ],
+                "properties": {
+                    "azimuth": {
+                        "description": "Azimuth",
+                        "type": "string"
+                    },
+                    "elevation": {
+                        "description": "Elevation",
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "maxAzimuthRate": {
+            "description": "Maximum azimuth rate achievable by station",
+            "type": "string"
+        },
+        "heightAboveAntennaFoot": {
+            "description": "The height of the antenna foot above the ground station altitude",
+            "type": "string"
+        },
+        "dryOffset": {
+            "description": "Dry correction offset",
+            "type": "string"
+        },
+        "rangeCalLongLoopCorrection": {
+            "description": "Long loop calibration path corrections (map of band combination to string with value in time units).",
+            "type": "object"
+        },
+        "rangeCalMediumLoopCorrection": {
+            "description": "Medium loop calibration path corrections (map of band combination to string with value in time units).",
+            "type": "object"
+        },
+        "groupDelay": {
+            "description": "Group delays (map of band combination to string with value in time units).",
+            "type": "object",
+            "required": [
+                "transmit",
+                "receive"
+            ],
+            "properties": {
+                "transmit": {
+                    "description": "Transmission group delays map",
+                    "type": "object"
+                },
+                "receive": {
+                    "description": "Reception group delays map",
+                    "type": "object"
+                }
+            }
+        },
+        "phaseDelay": {
+            "description": "Phase delays (map of band combination to string with value in time units).",
+            "type": "object",
+            "required": [
+                "transmit",
+                "receive"
+            ],
+            "properties": {
+                "transmit": {
+                    "description": "Transmission phase delays map",
+                    "type": "object"
+                },
+                "receive": {
+                    "description": "Reception phase delays map",
+                    "type": "object"
+                }
+            }
+        },
+        "stationComplex": {
+            "description": "Complex to which the station belongs",
+            "type": "string"
+        },
+        "stationAlias": {
+            "description": "List of station aliases, they can be used to refer to the same station",
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "mappings": {
+            "description": "Station mappings with key (mapping name) to value (string)",
+            "type": "object",
+            "additionalProperties": {
+                "description": "Key is name of mapping",
+                "type": "string"
+            }
+        },
+        "receivers": {
+            "description": "List of receivers available at the station",
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "coordinates": {
+            "description": "Cartesian reference coordinates defined in the reference axes system",
+            "type": "array",
+            "items": {
+                "type": "string",
+                "minItems": 3,
+                "maxItems": 3
+            }
+        },
+        "plateMotion": {
+            "description": "Plate motion Cartesian velocity",
+            "type": "array",
+            "items": {
+                "type": "string",
+                "minItems": 3,
+                "maxItems": 3
+            }
+        },
+        "rangeUnitConversion": {
+            "description": "Conversion map for range units to distance",
+            "type": "string"
+        },
+        "horizonMaskFile": {
+            "description": "Horizon mask file",
+            "type": "string"
+        }
+    }
+}

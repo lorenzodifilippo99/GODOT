@@ -1,0 +1,30 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Universe/Frames/PointIpf",
+    "description": "Configuration for PointIpf points in frames plugin",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+        "file"
+    ],
+    "properties": {
+        "file": {
+            "description": "Orbit IPF file path",
+            "type": "string"
+        },
+        "mapping": {
+            "description": "Custom mapping to be used to define the point names of the IPF centres. This can be used to overwrite the selection in the IPF file header (i.e. 0 for OratosLegacy or 1 for NAIF) or to provide the required custom mapping in case the selection in the IPF file header is 2 (custom).",
+            "type": "string",
+            "default": "OratosLegacy or NAIF automatically used if IPF header selection is 0 or 1 (if not, the mapping becomes mandatory)."
+        },
+        "axesMapping": {
+            "description": "Custom mapping to be used to define the axes names of the IPF reference axes.",
+            "type": "string",
+            "default": "code 0 for ICRF and code 4 for ITRF"
+        },
+        "interpOrder": {
+            "description": "Optional interpolation order for the IPF. If not given, hard coded InterpolationDefaults are used.",
+            "type": "integer"
+        }
+    }
+}

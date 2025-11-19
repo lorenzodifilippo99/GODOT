@@ -1,0 +1,46 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Universe/Frames/DirNadir",
+    "description": "Configuration for DirNadir directions in frames plugin (i.e. vertical direction wr to a body)",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+        "target",
+        "bodyOrigin",
+        "bodyAxes",
+        "axes",
+        "type"
+    ],
+    "properties": {
+        "target": {
+            "description": "Name of the target point in frames",
+            "type": "string"
+        },
+        "bodyOrigin": {
+            "description": "Name of the body origin point in frames",
+            "type": "string"
+        },
+        "bodyAxes": {
+            "description": "Name of the body fixed axes in frames",
+            "type": "string"
+        },
+        "type": {
+            "description": "Direction from/to body",
+            "type": "string",
+            "enum": [ "nadir", "zenith" ]
+        },
+        "radius": {
+            "description": "Radius of the body",
+            "type": "string"
+        },
+        "flattening": {
+            "description": "Flattening of the body",
+            "type": "number"
+        },
+        "axes": {
+            "description": "Optional name of the axes in frames",
+            "type": "string",
+            "default": "ICRF"
+        }
+    }
+}

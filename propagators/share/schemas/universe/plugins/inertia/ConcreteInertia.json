@@ -1,0 +1,70 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Universe/Inertia/CompositeInertia",
+    "description": "Mass Properties of an Object",
+    "type": "object",
+    "required": [
+        "axes",
+        "point",
+        "mass",
+        "inertia"
+    ],
+    "additionalProperties": false,
+    "properties": {
+        "axes": {
+            "description": "Name of the axes for defining mass properties input",
+            "type": "string"
+        },
+        "point": {
+            "description": "Name of the point for defining mass properties input origin",
+            "type": "string"
+        },
+        "mass": {
+            "description": "Mass of the element (scalar)",
+            "$ref": "../../../definitions.json#/definitions/scalar"
+        },
+        "center_of_mass": {
+            "description": "Center of mass of the element (km)",
+            "$ref": "../../../definitions.json#/definitions/vector3"
+        },
+        "inertia": {
+            "type": "object",
+            "description": "Inertia tensor of the element (kg*km^2)",
+            "required": [
+                "Ixx",
+                "Ixy",
+                "Ixz",
+                "Iyy",
+                "Iyz",
+                "Izz"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "Ixx": {
+                    "description": "Inertia tensor component Ixx (kg*km^2)",
+                    "$ref": "../../../definitions.json#/definitions/scalar"
+                },
+                "Ixy": {
+                    "description": "Inertia tensor component Ixy (kg*km^2)",
+                    "$ref": "../../../definitions.json#/definitions/scalar"
+                },
+                "Ixz": {
+                    "description": "Inertia tensor component Ixz (kg*km^2)",
+                    "$ref": "../../../definitions.json#/definitions/scalar"
+                },
+                "Iyy": {
+                    "description": "Inertia tensor component Iyy (kg*km^2)",
+                    "$ref": "../../../definitions.json#/definitions/scalar"
+                },
+                "Iyz": {
+                    "description": "Inertia tensor component Iyz (kg*km^2)",
+                    "$ref": "../../../definitions.json#/definitions/scalar"
+                },
+                "Izz": {
+                    "description": "Inertia tensor component Izz (kg*km^2)",
+                    "$ref": "../../../definitions.json#/definitions/scalar"
+                }
+            }
+        }
+    }
+}

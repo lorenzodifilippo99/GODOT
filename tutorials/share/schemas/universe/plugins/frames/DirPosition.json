@@ -1,0 +1,26 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Universe/Frames/DirPosition",
+    "description": "Configuration for DirPosition directions in frames plugin (i.e. direction from origin to target in given axes)",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+        "origin",
+        "target"
+    ],
+    "properties": {
+        "origin": {
+            "description": "Name of the origin point in frames",
+            "type": "string"
+        },
+        "target": {
+            "description": "Name of the target point in frames",
+            "type": "string"
+        },
+        "axes": {
+            "description": "Optional name of the axes in frames",
+            "type": "string",
+            "default": "ICRF"
+        }
+    }
+}

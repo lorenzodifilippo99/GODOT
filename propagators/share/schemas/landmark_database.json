@@ -1,0 +1,83 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Landmarks database",
+    "description": "Database for all landmarks on a given body",
+    "type": "object",
+    "required": [
+        "body",
+        "landmarks"
+    ],
+    "additionalProperties": true,
+    "properties": {
+        "body": {
+            "description": "Name of the target body, whose reference frames are used to define landmarks in.",
+            "type": "string"
+        },
+        "landmarks": {
+            "description": "Array of landmarks available for this body",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                    "name",
+                    "pos"
+                ],
+                "properties": {
+                    "name": {
+                        "description": "Name / ID of the landmark",
+                        "type": "string"
+                    },
+                    "pos": {
+                        "description": "3D position of the landmark in body frame",
+                        "type": "object",
+                        "additionalProperties": false,
+                        "required": [
+                            "value"
+                        ],
+                        "properties": {
+                            "value": {
+                                "description": "Estimate of position",
+                                "type": "object",
+                                "additionalProperties": false,
+                                "required": [
+                                    "x",
+                                    "y",
+                                    "z"
+                                ],
+                                "properties": {
+                                    "x": {
+                                        "description": "X coordinate in body frame",
+                                        "type": "number"
+                                    },
+                                    "y": {
+                                        "description": "Y coordinate in body frame",
+                                        "type": "number"
+                                    },
+                                    "z": {
+                                        "description": "Z coordinate in body frame",
+                                        "type": "number"
+                                    }
+                                }
+                            },
+                            "sigma": {
+                                "description": "Standard deviation vector of position",
+                                "type": "array",
+                                "items": {
+                                    "type": "number"
+                                }
+                            },
+                            "correlation": {
+                                "description": "Correlation vector of position (xy, xz, yz)",
+                                "type": "array",
+                                "items": {
+                                    "type": "number"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

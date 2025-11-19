@@ -1,0 +1,30 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Universe/Frames/AxesIpf",
+    "description": "Configuration for AxesIpf axes in frames plugin",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+        "file"
+    ],
+    "properties": {
+        "file": {
+            "description": "Attitude IPF file path (assuming parent frame is ICRF)",
+            "type": "string"
+        },
+        "interpOrder": {
+            "description": "Optional interpolation order for the IPF. If not given, hard coded InterpolationDefaults are used",
+            "type": "integer"
+        },
+        "mapping": {
+            "description": "Custom mapping to be used to define the axes names of the reference axes",
+            "type": "string",
+            "default": "all IPF axes code are mapped to ICRF."
+        },
+        "keysTimeScale": {
+            "description": "Defines the timescale of the IPF keys",
+            "type": "string",
+            "default": "universe default timescale (TDB or TT)."
+        }
+    }
+}

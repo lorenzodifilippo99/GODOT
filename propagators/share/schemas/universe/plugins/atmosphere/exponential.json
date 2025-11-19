@@ -1,0 +1,44 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Universe/Atmosphere/exponential",
+    "description": "Configuration for exponential model in atmosphere plugin",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+        "point",
+        "axes",
+        "height",
+        "density",
+        "scale"
+    ],
+    "properties": {
+        "point": {
+            "description": "Center of the body to which the atmosphere is attached",
+            "type": "string"
+        },
+        "axes": {
+            "description": "Axes to which the atmosphere is attached",
+            "type": "string"
+        },
+        "height": {
+            "description": "Height parameter",
+            "type": "string"
+        },
+        "density": {
+            "description": "Density parameter",
+            "type": "string"
+        },
+        "scale": {
+            "description": "Scale parameter",
+            "type": "string"
+        },
+        "radius": {
+            "description": "Optional radius to use for computing altitude",
+            "type": "string"
+        },
+        "flattening": {
+            "description": "Optional flattening to for computing altitude",
+            "type": "number"
+        }
+    }
+}

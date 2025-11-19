@@ -1,0 +1,30 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Universe/shapes/part",
+    "description": "Configuration for generic part",
+    "type": "object",
+    "required": [
+        "point",
+        "axes",
+        "srp_properties"
+    ],
+    "properties": {
+        "point": {
+            "description": "Point used for definition of part",
+            "type": "string"
+        },
+        "axes": {
+            "description": "Axes used for definition of part",
+            "type": "string"
+        },
+        "srp_properties": {
+            "description": "Name of used SRP properties",
+            "type": "string"
+        },
+        "colour": {
+            "description": "Name of colour for pictures",
+            "type": "string"
+        }
+    }
+}
+

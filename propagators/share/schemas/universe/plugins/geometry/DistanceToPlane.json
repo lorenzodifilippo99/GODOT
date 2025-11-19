@@ -1,0 +1,60 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Universe/Geometry/DistanceToPlane",
+    "description": "Distance [km] from a target point to a plane. The plane can be either one of the 3 planes of a Cartesian reference frame (if \"plane\" is provided), or an arbitrary plane (if \"planeNormal\" is provided).",
+    "type": "object",
+    "oneOf": [
+        {
+            "required": [
+                "center",
+                "target",
+                "axes",
+                "plane"
+            ]
+        },
+        {
+            "required": [
+                "center",
+                "target",
+                "axes",
+                "planeNormal"
+            ]
+        }
+    ],
+    "additionalProperties": false,
+    "properties": {
+        "target": {
+            "description": "Name of the target/spacecraft whose distance from the plane will be computed",
+            "type": "string"
+        },
+        "center": {
+            "description": "Either the name of a point passing through the plane (if \"planeNormal\" is provided), or the name of the origin of the Cartesian reference frame",
+            "type": "string"
+        },
+        "axes": {
+            "description": "Either the name of the axes used for the computation (if \"planeNormal\" is provided), or the name of the axes of the Cartesian reference frame",
+            "type": "string"
+        },
+        "plane": {
+            "description": "Cartesian plane (\"yz\", \"xz\", \"xy\") with respect to which the distance is computed",
+            "type": "string",
+            "enum": [
+                "yz",
+                "xz",
+                "xy"
+            ]
+        },
+        "planeNormal": {
+            "anyOf": [
+                {
+                    "description": "A vector perpendicular to the plane with respect to which the distance is computed",
+                    "$ref": "../../../definitions.json#/definitions/vector3"
+                },
+                {
+                    "description": "A direction representing the vector perpendicular to the plane with respect to which the distance is computed",
+                    "type": "string"
+                }
+            ]
+        }
+    }
+}

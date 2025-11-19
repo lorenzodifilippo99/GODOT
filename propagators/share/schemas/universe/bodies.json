@@ -1,0 +1,67 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Bodies plugin",
+    "description": "Bodies definition",
+    "type": "array",
+    "uniqueItems": true,
+    "items": {
+        "description": "Configuration for a specific rotating axes",
+        "type": "object",
+        "required": [
+            "name"
+        ],
+        "additionalProperties": false,
+        "properties": {
+            "name": {
+                "description": "Name of the axes",
+                "type": "string"
+            },
+            "point": {
+                "description": "Name of the point defined as center of the body",
+                "examples": [
+                    "Sun",
+                    "Earth"
+                ],
+                "type": "string"
+            },
+            "gm": {
+                "description": "Gravitational parameter of the body",
+                "$ref": "../definitions.json#/definitions/scalar",
+                "default": "'nameGM' constant in constants book, if available  (error thrown otherwise)"
+            },
+            "radius": {
+                "description": "Equatorial radius of the body",
+                "$ref": "../definitions.json#/definitions/scalar",
+                "default": "'nameRadius' constant in constants book if available, 0 otherwise (with warning)",
+                "examples": [
+                    "6378.14 km",
+                    "3396.2 km"
+                ]
+            },
+            "flattening": {
+                "description": "Flattening of the body",
+                "$ref": "../definitions.json#/definitions/scalar",
+                "default": "'nameFlattening' constant in constants book if available, 0 otherwise (with warning)",
+                "examples": [
+                    "0.003352811"
+                ]
+            },
+            "axes": {
+                "description": "Name of the axes defined as orientation of the body",
+                "examples": [
+                    "Ganymede"
+                ],
+                "type": "string"
+            },
+            "gravity": {
+                "description": "Gravity field spherical harmonics list",
+                "type": "array",
+                "uniqueItems": true,
+                "items": {
+                    "description": "Gravity field spherical harmonics objects",
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

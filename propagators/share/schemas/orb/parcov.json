@@ -1,0 +1,70 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "parcov",
+    "description": "Covariance equation generator configuration",
+    "type": "object",
+    "oneOf": [
+        {
+            "required": [
+                "parameters",
+                "values",
+                "sigma"
+            ]
+        },
+        {
+            "required": [
+                "parameters",
+                "values",
+                "covariance"
+            ]
+        },
+        {
+            "required": [
+                "file"
+            ]
+        }
+    ],
+    "additionalProperties": false,
+    "properties": {
+        "ignoreMissingParameters": {
+            "description": "If true will not fail if a parameter is not found in the universe. The parameter will just be ignored.",
+            "type": "boolean",
+            "default": false
+        },
+        "file": {
+            "description": "Filename of json or binary file storing solution.",
+            "type": "string"
+        },
+        "parameters": {
+            "description": "Array of parameters for which the covariance equation has to be generated.",
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+                "description": "Parameter name, can be any of the available parameters in the universe parameters book.",
+                "type": "string"
+            }
+        },
+        "values": {
+            "description": "Array of a-priori values for the parameters. Must have the same size as 'parameters'.",
+            "type": "array",
+            "uniqueItems": false,
+            "items": {
+                "description": "A-priori value for a parameter. Can be dimensionless or with units, but it must match the units of the parameter definition in the universe. The value is converted internally to SI units.",
+                "type": "string"
+            }
+        },
+        "sigma": {
+            "description": "Array of a-priori sigmas for the parameters. Must have the same size as 'parameters'. If 'sigma' is given, the covariance matrix is assumed diagonal and the full 'covariance' matrix cannot be provided.",
+            "type": "array",
+            "uniqueItems": false,
+            "items": {
+                "description": "A-priori sigma for a parameter. No units can be provided here, the values must be consistent with SI units.",
+                "type": "number"
+            }
+        },
+        "covariance": {
+            "description": "A-priori covariance matrix for the given 'parameters'. This must be a matrix of size NxN, where N is the size of the 'parameters' array. No units can be provided here, the values must be consistent with SI units.",
+            "type": "array"
+        }
+    }
+}

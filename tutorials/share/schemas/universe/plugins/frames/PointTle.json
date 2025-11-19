@@ -1,0 +1,31 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Universe/Frames/PointTle",
+    "description": "Configuration for PointTle points in frames plugin",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+        "origin",
+        "axes",
+        "tle"
+    ],
+    "properties": {
+        "origin": {
+            "description": "Origin of the TLEs, should be Earth",
+            "type": "string"
+        },
+        "axes": {
+            "description": "Axes in which the TLEs are defined, should be TEME",
+            "type": "string"
+        },
+        "tle": {
+            "description": "list of TLEs",
+            "$ref": "../../../definitions.json#/definitions/stringArray"
+        },
+        "checkSum": {
+            "description": "Optional boolean flag to perform a check sum validation on the TLEs",
+            "type": "boolean",
+            "default": true
+        }
+    }
+}

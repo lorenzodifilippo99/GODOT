@@ -1,0 +1,47 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Universe/Evaluables/RandomAcceleration",
+    "description": "Configuration for Random Scalar Evaluable in evaluables plugin",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+        "sig0",
+        "sigp",
+        "tau",
+        "step",
+        "start",
+        "end"
+    ],
+    "properties": {
+        "blockEvents": {
+            "description": "Optional flag to include blocks as dynamic events or not",
+            "type": "boolean",
+            "default": true
+        },
+        "sig0": {
+            "description": "Standard deviation of initial noise in km/s",
+            "type": "number"
+        },
+        "sigp": {
+            "description": "Standard deviation of noise process input in km/s",
+            "type": "number"
+        },
+        "tau": {
+            "description": "autocorrelation time with time units (default days)",
+            "type": "string"
+        },
+        "step": {
+            "description": "update stepsize with time units (default days)",
+            "type": "string"
+        },
+        "start": {
+            "description": "start epoch of noise process",
+            "$ref": "../../../definitions.json#/definitions/epoch"
+        },
+        "end": {
+            "description": "end epoch of noise process",
+            "$ref": "../../../definitions.json#/definitions/epoch"
+        }
+    }
+}
+

@@ -1,0 +1,30 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Spherical Harmonics plugin",
+    "description": "Spherical Harmonics models definition",
+    "type": "array",
+    "uniqueItems": true,
+    "items": {
+        "description": "One spherical harmonics model definition",
+        "type": "object",
+        "required": [
+            "name",
+            "type",
+            "config"
+        ],
+        "additionalProperties": false,
+        "properties": {
+            "name": {
+                "description": "Name of the spherical harmonics model",
+                "type": "string"
+            },
+            "type": {
+                "description": "Type of the spherical harmonics model",
+                "type": "string"
+            },
+            "config": {
+                "description": "Configuration of the spherical harmonics model"
+            }
+        }
+    }
+}

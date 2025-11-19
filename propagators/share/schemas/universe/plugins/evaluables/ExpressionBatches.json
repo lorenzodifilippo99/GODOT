@@ -1,0 +1,58 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Universe/Evaluables/ExpressionBatches",
+    "description": "Creates an evaluable from many expressions",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [],
+    "properties": {
+        "default": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "value": {
+                    "description": "default expression to be used for value if not specified in batch",
+                    "$ref": "../../../definitions.json#/definitions/scalar"
+                },
+                "derivative": {
+                    "description": "default expression to be used for derivative if not specified in batch",
+                    "$ref": "../../../definitions.json#/definitions/scalar"
+                },
+                "integral": {
+                    "description": "default expression to be used for integral if not specified in batch",
+                    "$ref": "../../../definitions.json#/definitions/scalar"
+                }
+            }
+        },
+        "batches": {
+            "description": "array of chronologically ordered batches",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "mandatory": [
+                    "epoch"
+                ],
+                "minItems": 1,
+                "properties": {
+                    "epoch": {
+                        "description": "Batch start time",
+                        "$ref": "../../../definitions.json#/definitions/epoch"
+                    },
+                    "value": {
+                        "description": "expression to be used for value",
+                        "$ref": "../../../definitions.json#/definitions/scalar"
+                    },
+                    "derivative": {
+                        "description": "expression to be used for derivative",
+                        "$ref": "../../../definitions.json#/definitions/scalar"
+                    },
+                    "integral": {
+                        "description": "expression to be used for integral",
+                        "$ref": "../../../definitions.json#/definitions/scalar"
+                    }
+                }
+            }
+        }
+    }
+}

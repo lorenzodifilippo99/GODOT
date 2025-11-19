@@ -1,0 +1,21 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Universe/Frames/AxesFixedRotation",
+    "description": "Configuration for AxesFixedRotation axes in frames plugin",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+        "parent",
+        "quaternion"
+    ],
+    "properties": {
+        "parent": {
+            "description": "Name of axes to be used as parent frame for the fixed rotation axes",
+            "type": "string"
+        },
+        "quaternion": {
+            "description": "(non-parameterized) Quaternion",
+            "$ref": "../../../definitions.json#/definitions/quaternion"
+        }
+    }
+}

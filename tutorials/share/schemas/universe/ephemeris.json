@@ -1,0 +1,31 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Ephemeris plugin",
+    "description": "Ephemeris system configuration",
+    "type": "array",
+    "uniqueItems": true,
+    "items": {
+        "description": "One ephemeris object",
+        "type": "object",
+        "required": [
+            "name",
+            "files"
+        ],
+        "additionalProperties": false,
+        "properties": {
+            "name": {
+                "description": "Name of the ephemeris object",
+                "type": "string"
+            },
+            "files": {
+                "description": "Ephemeris kernels to load",
+                "$ref": "../definitions.json#/definitions/stringArray"
+            },
+            "cache": {
+                "description": "Whether to cache kernels to memory",
+                "type": "boolean",
+                "default": true
+            }
+        }
+    }
+}

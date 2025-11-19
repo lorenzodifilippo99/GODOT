@@ -1,0 +1,111 @@
+ephemeris:
+  - name: de432
+    files:
+      - data/ephemeris/jpl/de432s.bsp
+  - name: gm431
+    files:
+      - data/ephemeris/jpl/gm_de431.tpc
+
+spacetime:
+  system: BCRS
+
+frames:
+  - name: ephem1
+    type: Ephem
+    config:
+      source: de432
+
+  - name: EMC
+    type: AxesOrient
+    config:
+      model: EMCJ2000
+
+  - name: Mars
+    type: PointAlias
+    config:
+      target: MarsBarycenter
+
+  - name: Mars
+    type: AxesOrient
+    config:
+      model: MarsIAU2009
+
+  - name: EarthLocal
+    type: AxesLocalOrbital
+    config:
+      center: Sun
+      target: Earth
+      axes: Pos
+
+  - name: MarsLocal
+    type: AxesLocalOrbital
+    config:
+      center: Sun
+      target: Mars
+      axes: Pos
+
+constants:
+  ephemeris:
+    - source: gm431
+
+bodies:
+  - name: Sun
+    point: Sun
+  - name: Earth
+    point: Earth
+  - name: Moon
+    point: Moon
+  - name: Mars
+    point: Mars
+
+gravity:
+  - name: SunEarthMarsGravity
+    bodies:
+      - Sun
+      - Earth
+      - Moon
+      - Mars
+
+dynamics:
+  - name: GravityOnly
+    type: SystemGravity
+    config:
+      model: SunEarthMarsGravity
+      switch: true
+
+  - name: SRP
+    type: SimpleSRP
+    config:
+      mass: SC_mass
+      area: SC_srp_area
+      cr: SC_srp_cr
+      occulters:
+        - Earth
+        - Moon
+
+  - name: SunEarthMarsDynamics
+    type: Combined
+    config:
+      - GravityOnly
+      - SRP
+      
+spacecraft:
+  - name: chaser
+    mass: 100 kg
+    srp:
+      area: 10 m^2
+      cr: 1.7
+    thrusters:
+      - name: main
+        thrust: 100 N
+        isp: 320 s
+
+sphericalHarmonics:
+  - name: EarthGrav
+    type: File
+    config:
+      point: Earth
+      degree: 16
+      order: 16
+      axes: ITRF
+      file: data/gravity/earth/eigen05c_napeos_80_sha.tab

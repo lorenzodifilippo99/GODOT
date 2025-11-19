@@ -1,0 +1,34 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Universe/Frames/AxesEphem",
+    "description": "Configuration for AxesEphem axes in frames plugin",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "ephem",
+      "naifId"
+    ],
+    "properties": {
+        "ephem": {
+            "description": "Name of the ephemeris provider (ephemeris plugin)",
+            "type": "string"
+        },
+        "naifId": {
+            "description": "NAIF identifier",
+            "type": "integer"
+        },
+        "parent": {
+            "description": "Parent axes (must match ephemeris reference)",
+            "type": "string",
+            "default": "ICRF"
+        },
+        "preCorrection": {
+            "description": "Pre-transformation orientation correction vector (three angles in radians)",
+            "$ref": "../../../definitions.json#/definitions/vector3"
+        },
+        "postCorrection": {
+            "description": "Post-transformation orientation correction vector (three angles in radians)",
+            "$ref": "../../../definitions.json#/definitions/vector3"
+        }
+    }
+}

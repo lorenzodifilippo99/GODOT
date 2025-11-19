@@ -1,0 +1,146 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Spacecraft plugin",
+    "description": "Spacecraft database definition",
+    "type": "array",
+    "uniqueItems": true,
+    "items": {
+        "description": "One spacecraft definition",
+        "type": "object",
+        "required": [
+            "name",
+            "mass"
+        ],
+        "additionalProperties": false,
+        "properties": {
+            "name": {
+                "description": "Name of the spacecraft",
+                "type": "string"
+            },
+            "mass": {
+                "description": "Mass of the spacecraft",
+                "examples": [
+                    "1200 kg",
+                    "4420.5 kg"
+                ],
+                "type": "string"
+            },
+            "srp": {
+                "description": "Surface properties used for SRP computation",
+                "type": "object",
+                "required": [
+                    "area",
+                    "cr"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                    "area": {
+                        "description": "Cross-section area used for flat plate model",
+                        "examples": [
+                            "12.5 m^2",
+                            "41 m^2"
+                        ],
+                        "type": "string"
+                    },
+                    "cr": {
+                        "oneOf": [
+                            {
+                                "description": "Reflectivity coefficient",
+                                "examples": [
+                                    1.5,
+                                    1.9
+                                ],
+                                "type": "number"
+                            },
+                            {
+                                "description": "Reflectivity coefficient",
+                                "examples": [
+                                    "1.5",
+                                    "1.9"
+                                ],
+                                "type": "string"
+                            }
+                        ]
+                    }
+                }
+            },
+            "drag": {
+                "description": "Surface properties used for drag computation",
+                "type": "object",
+                "required": [
+                    "area",
+                    "cd"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                    "area": {
+                        "description": "Cross-section area used for drag model",
+                        "examples": [
+                            "12.5 m^2",
+                            "41 m^2"
+                        ],
+                        "type": "string"
+                    },
+                    "cd": {
+                        "oneOf": [
+                            {
+                                "description": "Drag coefficient",
+                                "examples": [
+                                    1.5,
+                                    1.9
+                                ],
+                                "type": "number"
+                            },
+                            {
+                                "description": "Drag coefficient",
+                                "examples": [
+                                    "1.5",
+                                    "1.9"
+                                ],
+                                "type": "string"
+                            }
+                        ]
+                    }
+                }
+            },
+            "thrusters": {
+                "description": "Definition of spacecraft thrusters",
+                "type": "array",
+                "uniqueItems": true,
+                "items": {
+                    "description": "One thruster definition",
+                    "type": "object",
+                    "required": [
+                        "name",
+                        "thrust",
+                        "isp"
+                    ],
+                    "additionalProperties": false,
+                    "properties": {
+                        "name": {
+                            "description": "Name of the thruster",
+                            "type": "string"
+                        },
+                        "thrust": {
+                            "description": "Thruster thrust magnitude",
+                            "examples": [
+                                "150 mN",
+                                "420 N",
+                                "1.5 kN"
+                            ],
+                            "type": "string"
+                        },
+                        "isp": {
+                            "description": "Thruster isp coefficient",
+                            "examples": [
+                                "320 s",
+                                "1500 s"
+                            ],
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

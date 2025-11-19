@@ -1,0 +1,58 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Light Time plugin",
+    "description": "Light time definition",
+    "type": "array",
+    "uniqueItems": true,
+    "items": {
+        "description": "One light time definition",
+        "type": "object",
+        "required": [
+            "name"
+        ],
+        "additionalProperties": false,
+        "properties": {
+            "name": {
+                "description": "Name of the light time model",
+                "type": "string"
+            },
+            "bodies": {
+                "description": "Bodies to consider for relativistic light time correction",
+                "$ref": "../definitions.json#/definitions/stringArray"
+            },
+            "refCenter": {
+                "description": "Reference center (eg. SSB or geocenter)",
+                "type": "string",
+                "default": "SSB"
+            },
+            "refAxes": {
+                "description": "Reference center (eg. ICRF)",
+                "type": "string",
+                "default": "ICRF"
+            },
+            "bending": {
+                "description": "Use bending correction for first body",
+                "type": "boolean",
+                "default": true
+            },
+            "maxIter": {
+                "description": "Maximum number of iterations in light time solver",
+                "type": "integer",
+                "default": 10,
+                "minimum": 1,
+                "maximum": 1000,
+                "examples": [
+                    10
+                ]
+            },
+            "thrIter": {
+                "description": "Threshold for stopping iteration in light time solver",
+                "type": "number",
+                "default": 1e-9,
+                "examples": [
+                    1e-9
+                ]
+            }
+        }
+    }
+}

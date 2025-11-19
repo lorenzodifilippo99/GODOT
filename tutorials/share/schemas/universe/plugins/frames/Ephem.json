@@ -1,0 +1,33 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Universe/Frames/Ephem",
+    "description": "Configuration for Ephem points in frames plugin",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+        "source"
+    ],
+    "properties": {
+        "source": {
+            "description": "Ephemerides source",
+            "type": "string"
+        },
+        "mapping": {
+            "description": "Mapping integer identifiers to body names",
+            "type": "string"
+        },
+        "only": {
+            "description": "list of integer identifiers to load (if absent load everything)",
+            "$ref": "../../../definitions.json#/definitions/integerSet"
+        },
+        "ignore": {
+            "description": "list of integer identifiers to ignore",
+            "$ref": "../../../definitions.json#/definitions/integerSet"
+        },
+        "epsilon": {
+            "description": "optional time interval (seconds) to use numerical differentation for derivatives of order 2",
+            "type": "number",
+            "default": "None"
+        }
+    }
+}

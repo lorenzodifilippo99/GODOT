@@ -1,0 +1,41 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "solution",
+    "description": "SRIA data",
+    "type": "object",
+    "required": [
+        "parameters",
+        "values",
+        "sria"
+    ],
+    "additionalProperties": false,
+    "properties": {
+        "parameters": {
+            "description": "Array of parameters.",
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+                "description": "Parameter name.",
+                "type": "string"
+            }
+        },
+        "values": {
+            "description": "Array of values for the parameters. Must have the same size as 'parameters'.",
+            "type": "array",
+            "uniqueItems": false,
+            "items": {
+                "description": "Value for a parameter. The value must usually be consistent with default SI units used in GODOT.",
+                "type": "number"
+            }
+        },
+        "sria": {
+            "description": "Packed upper triangular SRI array (column-major order) for the given 'parameters of size (N+1)*(N+2)/2 where N is the parameter vector size.",
+            "type": "array",
+            "uniqueItems": false,
+            "items": {
+                "description": "Matrix element. The value must be consistent with default SI units used in GODOT.",
+                "type": "number"
+            }
+        }
+    }
+}

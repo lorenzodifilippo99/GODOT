@@ -1,0 +1,112 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Gravity plugin",
+    "description": "Gravity models definition",
+    "type": "array",
+    "uniqueItems": true,
+    "items": {
+        "description": "One gravity model definition",
+        "type": "object",
+        "required": [
+            "name",
+            "bodies"
+        ],
+        "additionalProperties": false,
+        "properties": {
+            "name": {
+                "description": "Name of the gravity model",
+                "type": "string"
+            },
+            "relativity": {
+                "required": [
+                    "sources",
+                    "mode",
+                    "massiveBodies"
+                ],
+                "additionalProperties": false,
+                "description": "Configure relativistic gravitational acceleration correction (if using Central mode, this should contain only one body ).",
+                "properties": {
+                    "sources": {
+                        "description": "List of bodies to consider.",
+                        "type": "array",
+                        "uniqueItems": true,
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "massiveBodies": {
+                        "description": "List of bodies to treat as massive (must include all sources).",
+                        "type": "array",
+                        "uniqueItems": true,
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "mode": {
+                        "description": "Correction to apply: use Central with Earth only for GCRS or N-Bodies for BCRS.",
+                        "type": "string",
+                        "enum": [
+                            "None",
+                            "Central",
+                            "N-Bodies"
+                        ]
+                    },
+                    "gamma": {
+                        "description": "PPN gamma parameter. How much space curvature is produced by unit rest mass? ",
+                        "$ref": "../definitions.json#/definitions/scalar",
+                        "default": 1.0
+                    },
+                    "beta": {
+                        "description": "PPN beta parameter. How much nonlinearity is there in the superposition law for gravity? ",
+                        "$ref": "../definitions.json#/definitions/scalar",
+                        "default": 1.0
+                    }
+                }
+            },
+            "barycenter": {
+                "description": "Name of the system barycenter point",
+                "type": "string",
+                "default": "SSB"
+            },
+            "bodies": {
+                "description": "Definition of the contributor bodies",
+                "type": "array",
+                "uniqueItems": true,
+                "items": {
+                    "oneOf": [
+                        {
+                            "description": "One gravity contributor name",
+                            "type": "string"
+                        },
+                        {
+                            "description": "One gravity contributor definition",
+                            "type": "object",
+                            "required": [
+                                "center"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                                "parent": {
+                                    "description": "Parent node of the gravitational contributor",
+                                    "type": "string"
+                                },
+                                "center": {
+                                    "description": "Center body",
+                                    "type": "string"
+                                },
+                                "barycenter": {
+                                    "description": "Barycenter body",
+                                    "type": "string"
+                                },
+                                "soi": {
+                                    "description": "Sphere of influence",
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    }
+}

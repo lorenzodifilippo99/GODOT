@@ -1,0 +1,41 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Universe/VectorEvaluables/StateCartesian",
+    "description": "Cartesian State Vector of any order",
+    "type": "object",
+    "required": [
+        "origin",
+        "target",
+        "axes",
+        "order"
+    ],
+    "additionalProperties": false,
+    "properties": {
+        "origin": {
+            "description": "Origin point",
+            "type": "string"
+        },
+        "target": {
+            "description": "Target point whose orbit elements are required in origin, axes reference",
+            "type": "string"
+        },
+        "axes": {
+            "description": "Reference system axes",
+            "type": "string"
+        },
+        "order": {
+            "description": "Order of Cartesian vector to be generated (0 to 3)",
+            "type": "number"
+        },
+        "projectionAxes": {
+            "description": "Optional axes to project results",
+            "type": "string",
+            "default": "None"
+        },
+        "projectionPartials": {
+            "description": "Compute partial derivatives of rotation matrix from axes to projection axes.",
+            "type": "boolean",
+            "default": false
+        }
+    }
+}

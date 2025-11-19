@@ -1,0 +1,29 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "expr",
+  "description": "Expression equation generator configuration",
+  "type": "object",
+  "required": [
+    "expr"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "expr": {
+      "description": "Array of expressions, each corresponding to an equation to be generated.",
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "description": "Expression string, with each expression generating a single scalar equation. This is a string with the format: 'expression = value @ epoch | sigma' where 'expression' is read with the InfixParser and can contain any evaluable, 'value' is the constraint value, 'epoch' is the evaluation epoch for expression and 'sigma' defines the a-priori for the constraint. The 'sigma' part is optional: if this is not provided, the a-priori must be given with the 'covariance' or 'weight' options. If 'value' and 'sigma' are provided without units, they should be consistent with SI units, otherwise they are converted internally to SI units.",
+        "type": "string"    
+      }
+    },
+    "covariance": {
+      "description": "A-priori covariance matrix for the expressions provided in 'expr', generating a single multi-dimensional equation. This must be a matrix of size NxN, where N is the size of the 'expr' array. No units can be provided here, the values must be consistent with SI units.",
+      "type": "array"
+    },
+    "weight": {
+      "description": "Weights for the expressions provided in 'expr'. This must be an array of size MxN, where N is the size of the 'expr' array and M is the desired number of equations. M scalar equations are then generated, with equation j obtained by the dot product of the weights row j with the evaluated expressions and values. No units can be provided here, the values must be consistent with SI units.",
+      "type": "array"
+    }
+  }
+}

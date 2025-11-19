@@ -1,0 +1,152 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "EventManager",
+  "description": "Schema for EventManager class configuration",
+  "definitions": {
+    "step": {
+      "description": "Step size used to generate grid",
+      "type": "string",
+      "examples": [
+        "1 day",
+        "300 s"
+      ],
+      "default": "1 day"
+    }
+  },
+  "type": "array",
+  "items": {
+    "oneOf": [
+      {
+        "description": "A leaf node defined purely with a function",
+        "required": [
+          "name",
+          "expr",
+          "tol",
+          "grid"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "description": "Name of the node",
+            "type": "string"
+          },
+          "expr": {
+            "description": "Expression for defining the event set or event interval set",
+            "type": "string",
+            "pattern": ".+[<=>].+"
+          },
+          "deriv": {
+            "description": "Whether the derivative should be taken instead of the expression itself",
+            "type": "boolean",
+            "default": false
+          },
+          "eps": {
+            "description": "Epsilon used to compute numerical derivatives for the case when deriv=true and for additional advanced root finding algorithm",
+            "type": "string",
+            "examples": [
+              "1 s",
+              "10 ms",
+              "0.1 day"
+            ],
+            "default": "1 s"
+          },
+          "tol": {
+            "description": "Tolerance for finding the event locations",
+            "type": "string",
+            "examples": [
+              "1 ms",
+              "0.1 ms"
+            ],
+            "default": "1 ms"
+          },
+          "grid": {
+            "oneOf": [
+              {
+                "description": "Grid used for the event finding algorithm",
+                "type": "object",
+                "required": [
+                  "start",
+                  "end",
+                  "step"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "start": {
+                    "description": "Start of the grid, using epoch",
+                    "type": "string",
+                    "examples": [
+                      "1000.0 TDB",
+                      "2020-01-01 TDB"
+                    ]
+                  },
+                  "end": {
+                    "description": "End of the grid, using epoch",
+                    "type": "string",
+                    "examples": [
+                      "2000.0 TDB",
+                      "2030-01-01 TDB"
+                    ]
+                  },
+                  "step": {
+                    "$ref": "#/definitions/step"
+                  }
+                }
+              },
+              {
+                "description": "List of grid defined using an already solved event interval set and step size",
+                "type": "object",
+                "required": [
+                  "node",
+                  "step"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "node": {
+                    "description": "Solution node already containing an event interval set",
+                    "type": "string"
+                  },
+                  "step": {
+                    "$ref": "#/definitions/step"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "description": "A composite node defined using leaf and other composite nodes",
+        "required": [
+          "name",
+          "expr"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "description": "Name of the node",
+            "type": "string"
+          },
+          "expr": {
+            "oneOf": [
+              {
+                "description": "Expression for applying a NOT operator on an event",
+                "type": "string",
+                "pattern": "[!].+"
+              },
+              {
+                "description": "Expression for applying an AND operator on two events",
+                "type": "string",
+                "pattern": "(.+)[&]{2}(.+)"
+              },
+              {
+                "description": "Expression for applying an OR operator on two events",
+                "type": "string",
+                "pattern": "(.+)[|]{2}(.+)"
+              }
+            ]
+          }
+        }
+      }
+    ]
+  }
+}

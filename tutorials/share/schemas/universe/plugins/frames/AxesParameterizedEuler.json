@@ -1,0 +1,31 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Universe/Frames/AxesParameterizedEuler",
+    "description": "Configuration for AxesParameterizedEuler axes in frames plugin",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+        "angles",
+        "h"
+    ],
+    "properties": {
+        "angles": {
+            "description": "Z-X-Z Euler rotation angle sequence (evaluables, possibly parameterized)",
+            "$ref": "../../../definitions.json#/definitions/vector3"
+        },
+        "h": {
+            "description": "grid spacing for 5-point stencil used to compute time derivatives of the angles (time units)",
+            "type": "string"
+        },
+        "partials": {
+            "description": "If you know that the Euler angles evaluables have no non-zero partial derivatives wrt to tracked parameters, you can set this to false for optimisation",
+            "default": true,
+            "type": "boolean"
+        },
+        "parent": {
+            "description": "Parent axes (must match ephemeris reference)",
+            "type": "string",
+            "default": "ICRF"
+        }
+    }
+}

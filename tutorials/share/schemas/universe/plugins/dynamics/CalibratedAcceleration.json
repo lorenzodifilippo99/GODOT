@@ -1,0 +1,54 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Universe/Dynamics/CalibratedAcceleration",
+    "description": "Configuration for Calibrated Acceleration in dynamics plugin",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+        "input"
+    ],
+    "properties": {
+        "point": {
+            "$ref": "definitions.json#/definitions/point"
+        },
+        "axes": {
+            "$ref": "definitions.json#/definitions/axes"
+        },
+        "inputAxes": {
+            "$ref": "definitions.json#/definitions/inputAxes"
+        },
+        "input": {
+            "description": "input acceleration configuration",
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "x",
+                "y",
+                "z"
+            ],
+            "properties": {
+                "x": {
+                    "description": "(optionally parameterized) acceleration in X coordinate",
+                    "$ref": "../../../definitions.json#/definitions/scalar"
+                },
+                "y": {
+                    "description": "(optionally parameterized) acceleration in Y coordinate",
+                    "$ref": "../../../definitions.json#/definitions/scalar"
+                },
+                "z": {
+                    "description": "(optionally parameterized) acceleration in Z coordinate",
+                    "$ref": "../../../definitions.json#/definitions/scalar"
+                }
+            }
+        },
+        "calibrationAxes": {
+            "$ref": "definitions.json#/definitions/calibrationAxes"
+        },
+        "scaleWithMainComponent": {
+            "$ref": "definitions.json#/definitions/scaleWithMainComponent"
+        },
+        "calibration": {
+            "$ref": "definitions.json#/definitions/calibration"
+        }
+    }
+}

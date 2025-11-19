@@ -1,0 +1,21 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Universe/Geometry/Owlt",
+    "description": "Computes the one way light time [sec] (geometric range / speed of light) between points in the frame system.",
+    "type": "object",
+    "required": [
+        "observer",
+        "target"
+    ],
+    "additionalProperties": false,
+    "properties": {
+        "target": {
+            "description": "A point in the frames system",
+            "type": "string"
+        },
+        "observer": {
+            "description": "A point in the frames system",
+            "type": "string"
+        }
+    }
+}

@@ -1,0 +1,116 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Dynamics plugin common definitions",
+    "description": "Common definitions for Dynamics plugin schemas",
+    "definitions": {
+        "point": {
+            "description": "Point used for dynamics computation (e.g. spacecraft)",
+            "type": "string",
+            "default": "If not provide here, the point is associated in the Trajectory to the propagated point"
+        },
+        "axes": {
+            "description": "Axes used for dynamics computation (e.g. ICRF)",
+            "type": "string",
+            "default": "If not provided here, the axes are associated in the Trajectory to ICRF"
+        },
+        "inputAxes": {
+            "description": "Optional name of the axes in the frame system in which the input acceleration is given",
+            "type": "string",
+            "default": "ICRF"
+        },
+        "mass": {
+            "description": "Spacecraft mass (optionally parameterized) for acceleration computation",
+            "$ref": "../../../definitions.json#/definitions/scalar"
+        },
+        "area": {
+            "description": "Area (optionally parameterized) for acceleration computation",
+            "$ref": "../../../definitions.json#/definitions/scalar"
+        },
+        "file": {
+            "description": "IPF acceleration file path (3 acceleration components in Cartesian coordinates in km/s^2)",
+            "type": "string"
+        },
+        "interpOrder": {
+            "description": "Optional interpolation order for the IPF acceleration file",
+            "type": "integer",
+            "default": "-1, i.e. as per hardcoded InterpolationDefaults"
+        },
+        "blockEvents": {
+            "description": "Optional flag to include IPF acceleration file blocks as dynamic events or not",
+            "type": "boolean",
+            "default": true
+        },
+        "calibration": {
+            "description": "Optional calibration configuration",
+            "type": "object",
+            "default": "Constant 1.0 calibration for all three components",
+            "additionalProperties": false,
+            "required": [
+                "x",
+                "y",
+                "z"
+            ],
+            "properties": {
+                "x": {
+                    "description": "(optionally parameterized) calibration in X coordinate",
+                    "$ref": "../../../definitions.json#/definitions/scalar"
+                },
+                "y": {
+                    "description": "(optionally parameterized) calibration in Y coordinate",
+                    "$ref": "../../../definitions.json#/definitions/scalar"
+                },
+                "z": {
+                    "description": "(optionally parameterized) calibration in Z coordinate",
+                    "$ref": "../../../definitions.json#/definitions/scalar"
+                }
+            }
+        },
+        "calibrationAxes": {
+            "description": "Optional name of the axes in the frame system in which the acceleration can be calibrated",
+            "type": "string",
+            "default": "ICRF"
+        },
+        "scaleWithMainComponent": {
+            "description": "Optional flag to scale all components with the main component, assumed to be the X axis",
+            "type": "boolean",
+            "default": false
+        },
+        "occulters": {
+            "description": "List of bodies in the universe to be considered as occulters of the SRP",
+            "type": "array",
+            "minItems": 0,
+            "uniqueItems": true,
+            "items": {
+                "oneOf": [
+                    {
+                        "description": "Name of the occulter body",
+                        "type": "string"
+                    },
+                    {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "required": [
+                            "body",
+                            "model"
+                        ],
+                        "properties": {
+                            "body": {
+                                "description": "Name of the occulter body",
+                                "type": "string"
+                            },
+                            "model": {
+                                "description": "Occultation model",
+                                "type": "string"
+                            }
+                        }
+                    }
+                ]
+            }
+        },
+        "eclipseEvents": {
+            "description": "Flag to whether generate events at the eclipse enter/exit",
+            "type": "boolean",
+            "default": true
+        }
+    }
+}

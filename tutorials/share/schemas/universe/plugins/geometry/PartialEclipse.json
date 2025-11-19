@@ -1,0 +1,6 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Universe/Geometry/PartialEclipse",
+    "$ref": "definitions.json#/definitions/eclipse",
+    "description": "Partial eclipse function, returns < 0 when in partial eclipse"
+}

@@ -1,0 +1,73 @@
+KPL/PCK
+
+  Assign mass parameters to planets & satellites.
+
+  Parameter "BODY000_GMLIST" contains list of included objects in 
+  ASCENDING ID code order. 
+
+  Source: DE-431 "ASTRO-VALUES", Folkner              [1-10,199,299,301,399] 
+          Jacobson satellite file release forms [non-Lunar satellites, planets]
+          SB431-BIG16 small-body integration perturber file
+
+  UNITS: km^3/s^2
+
+  Modification history:
+
+   DATE         Who  Change
+   -----------  ---  -------------------------------------------------------
+   2000-Nov-28  JDG  Version 1.0
+   2002-Oct-17  JDG  C-P-V values current
+   2003-Feb-26  JDG  Pluto/Charon values consistent w/Jacobson PLU006
+   2003-Mar-13  JDG  Update all satellite/planet GMs
+   2005-Mar-02  JDG  Update Saturnians 601-609,699 to SAT192 values
+   2005-Mar-07  JDG  Update Pluto system (901,999) to PLU009 values
+   2005-Mar-18  JDG  Update 610-611, add 615-617 (SAT196)
+   2006-Apr-28  JDG  Update 601-609, 699 (SAT242) and 401-402, 499 (MAR063)
+   2006-Sep-28  JDG  Update 601-609, 699 (SAT252)
+   2008-Aug-11  JDG  Revert to DE405 for Pluto system GM (9)
+   2008-Sep-05  JDG  Over-ride DE405 "4" with 499+401+402.
+   2008-Sep-25  JDG  Update 4,499,401,402 for MAR080.
+   2013-Jul-23  JDG  Version 2.0
+                      Updated to DE431 values (from DE405)
+                      401-402,499    : MAR097
+                      501-505,599    : JUP230
+                      601-609,699    : SAT359
+                      610-611,615-617: SAT357
+                      701-705,799    : URA083 
+                      801,899        : NEP081
+                      901-904,999    : PLU042 (902-904 newly added)
+                      2000001-2000004: BIG16 (smb perturber file value)
+                      2000006-2000007: BIG16
+                      2000010        : BIG16
+                      2000015-2000016: BIG16
+                      2000029        : BIG16
+                      2000052        : BIG16
+                      2000065        : BIG16
+                      2000087-2000088: BIG16
+                      2000433        : Yeomans et al. (2000) Science v.289,pp.2085-2088
+                      2000511        : BIG16
+                      2000704        : BIG16
+   2013-Dec-30  JDG  Updated for SAT360, PLU043
+   2014-Jan-08  JDG  Updated for URA111/112.
+
+  Key:
+   JDG= Jon.D.Giorgini@jpl.nasa.gov
+
+   \begindata
+
+     BODY000_GMLIST = ( 1 2 3 4 5 6 7 8 9 10 301 399 )
+
+     BODY1_GM       = ( 2.2032080486417868E+04 )
+     BODY2_GM       = ( 3.2485859882645960E+05 )
+     BODY3_GM       = ( 4.0350323347908700E+05 )
+     BODY4_GM       = ( 4.2828314258067300E+04 )
+     BODY5_GM       = ( 1.2671276785779479E+08 )
+     BODY6_GM       = ( 3.7940626061137460E+07 )
+     BODY7_GM       = ( 5.7945490070718740E+06 )
+     BODY8_GM       = ( 6.8365340638792610E+06 )
+     BODY9_GM       = ( 9.8160088770700440E+02 )
+     BODY10_GM      = ( 1.3271244001798700E+11 )
+     BODY399_GM     = ( 398600.4328969392 ) 
+     BODY301_GM     = ( 4902.800582147764 )
+   \begintext
+

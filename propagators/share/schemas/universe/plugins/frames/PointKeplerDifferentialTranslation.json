@@ -1,0 +1,64 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Universe/Frames/PointKeplerDifferentialTranslation",
+    "description": "Configuration for PointKeplerDifferentialTranslation point in frames plugin",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+        "origin",
+        "target",
+        "epoch",
+        "type",
+        "dx",
+        "mu"
+    ],
+    "properties": {
+        "origin": {
+            "description": "Center of Motion (eg Sun).",
+            "type": "string"
+        },
+        "target": {
+            "description": "Reference point whose orbit shall be perturbed (eg EMB)",
+            "type": "string"
+        },
+        "epoch": {
+            "description": "Epoch at which rotation is frozen",
+            "$ref": "../../../definitions.json#/definitions/epoch"
+        },
+        "type": {
+            "description": "State representation type",
+            "type": "string",
+            "enum": [
+                "Cart",
+                "Kep",
+                "Circ",
+                "Planar",
+                "KepRad",
+                "Equi"
+            ]
+        },
+        "dx": {
+            "description": "State correction at epoch in chosen state representation",
+            "$ref": "../../../definitions.json#/definitions/vector6"
+        },
+        "mu": {
+            "description": "GM value of central body",
+            "$ref": "../../../definitions.json#/definitions/scalar"
+        },
+        "dmu": {
+            "description": "Correction to GM value of central body",
+            "default": "None",
+            "$ref": "../../../definitions.json#/definitions/scalar"
+        },
+        "axes": {
+            "description": "Inertial axes of representation",
+            "default": "ICRF",
+            "type": "string"
+        },
+        "tol": {
+            "description": "Tolerance for solving Kepler equation",
+            "default": 1e-13,
+            "type": "number"
+        }
+    }
+}

@@ -1,0 +1,20 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Universe/Evaluables/TptTimeEvaluable",
+    "description": "Configuration for TptTimeEvaluable in evaluables plugin",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+        "file"
+    ],
+    "properties": {
+        "file": {
+            "description": "Path of the TPT file to load",
+            "type": "string"
+        },
+        "mass": {
+            "description": "Target evaluable to set as the default aliased, can be empty string for no alias",
+            "type": "string"
+        }
+    }
+}

@@ -1,0 +1,41 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "solution",
+    "description": "ORB solution",
+    "type": "object",
+    "required": [
+        "parameters",
+        "values",
+        "covariance"
+    ],
+    "additionalProperties": false,
+    "properties": {
+        "parameters": {
+            "description": "Array of parameters for which the covariance equation has to be generated.",
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+                "description": "Parameter name, can be any of the available parameters in the universe parameters book.",
+                "type": "string"
+            }
+        },
+        "values": {
+            "description": "Array of a-priori values for the parameters. Must have the same size as 'parameters'.",
+            "type": "array",
+            "uniqueItems": false,
+            "items": {
+                "description": "A-priori value for a parameter. The value must be consistent with default SI units used in GODOT.",
+                "type": "number"
+            }
+        },
+        "covariance": {
+            "description": "Upper triangle of a-priori covariance matrix packed in vector format (column-major order) for the given 'parameters' of size N*(N+1)/2 where N is the parameter vector size.",
+            "type": "array",
+            "uniqueItems": false,
+            "items": {
+                "description": "Covariance matrix element. The value must be consistent with default SI units used in GODOT.",
+                "type": "number"
+            }
+        }
+    }
+}

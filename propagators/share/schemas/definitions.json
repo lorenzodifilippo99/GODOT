@@ -1,0 +1,191 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Definitions",
+    "description": "Basic definitions for other cosmos universe configurations",
+    "definitions": {
+        "mapping": {
+            "description": "String to string mapping definition",
+            "type": "object",
+            "additionalProperties": {
+                "description": "Mapping from string to another string",
+                "type": "string"
+            }
+        },
+        "Axis": {
+            "description": "A canonical axes direction.",
+            "type": "string",
+            "enum": [
+                "+X",
+                "-X",
+                "+Y",
+                "-Y",
+                "+Z",
+                "-Z"
+            ]
+        },
+        "stringArray": {
+            "description": "Non-empty array of unique strings",
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+                "type": "string"
+            }
+        },
+        "integerSet": {
+            "description": "array of unique integers",
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+                "type": "integer"
+            }
+        },
+        "stringArrayOrEmpty": {
+            "description": "Possible empty array of unique strings",
+            "type": "array",
+            "minItems": 0,
+            "uniqueItems": true,
+            "items": {
+                "type": "string"
+            }
+        },
+        "string2num": {
+            "description": "String to number mapping definition",
+            "type": "object",
+            "additionalProperties": {
+                "type": "number"
+            }
+        },
+        "vector3": {
+            "description": "Vector of 3 numbers or strings (mixed)",
+            "type": "array",
+            "items": {
+                "oneOf": [
+                    {
+                        "type": "string"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "minItems": 3,
+            "maxItems": 3
+        },
+        "vector4": {
+            "description": "Vector of 4 numbers or strings (mixed)",
+            "type": "array",
+            "items": {
+                "oneOf": [
+                    {
+                        "type": "string"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "minItems": 4,
+            "maxItems": 4
+        },
+        "vector6": {
+            "description": "Vector of 6 numbers or strings (mixed)",
+            "type": "array",
+            "items": {
+                "oneOf": [
+                    {
+                        "type": "string"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "minItems": 6,
+            "maxItems": 6
+        },
+        "quaternion": {
+            "description": "Quaternion",
+            "type": "object",
+            "required": [
+                "x",
+                "y",
+                "z",
+                "s"
+            ],
+            "properties": {
+                "x": {
+                    "description": "First component of vector part (coefficient of i)",
+                    "type": "number"
+                },
+                "y": {
+                    "description": "Second component of vector part (coefficient of j)",
+                    "type": "number"
+                },
+                "z": {
+                    "description": "Third component of vector part (coefficient of k)",
+                    "type": "number"
+                },
+                "s": {
+                    "description": "Scalar component",
+                    "type": "number"
+                }
+            }
+        },
+        "scalar": {
+            "description": "Scalar or scalar time evaluable (mixed)",
+            "oneOf": [
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "number"
+                }
+            ]
+        },
+        "epoch": {
+            "description": "Epoch",
+            "oneOf": [
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "object",
+                    "required": [
+                        "side",
+                        "timeScale",
+                        "seconds",
+                        "fraction"
+                    ],
+                    "additionalProperties": false,
+                    "properties": {
+                        "seconds": {
+                            "description": "int64_t seconds from 2000-01-01T00:00:00.000",
+                            "type": "integer"
+                        },
+                        "fraction": {
+                            "description": "fraction of seconds",
+                            "type": "number"
+                        },
+                        "timeScale": {
+                            "description": "Timescale string identifier (eg TDB, TAI)",
+                            "type": "string"
+                        },
+                        "Side": {
+                            "description": "Scalar component",
+                            "type": "string",
+                            "enum": [
+                                "Left",
+                                "Right"
+                            ]
+                        },
+                        "date(info)": {
+                            "description": "Calendar date (for information only).",
+                            "type": "string"
+                        }
+                    }
+                }
+            ]
+        }
+    }
+}

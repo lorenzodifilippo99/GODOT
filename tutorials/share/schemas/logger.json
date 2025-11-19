@@ -1,0 +1,57 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Logger configuration",
+    "description": "Logger configuration",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+       "color": {
+           "description": "defines if standard out and standard error should use color text (default: true). Color will not be enabled for stdout (resp stderr) if stdout (resp stderr) is not a tty.",
+           "type": "boolean"
+       },
+       "files": {
+           "type": "object",
+           "additionalProperties": {
+              "type": "string", 
+              "description" : "log file path"
+           }
+       },
+       "units": {
+           "type": "object",
+           "description": "logger unit configuration",
+           "additionalProperties": {
+              "required": [ "sink" ],
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                  "sink": {
+                      "type": "string",
+                      "description": "file label or stdout for standard out or stderr for standard error "
+                  },
+                  "min": {
+                      "type": "integer",
+                      "default": 0,
+                      "description": "mimimum log level to be printed in that log unit"
+                  },
+                  "max": {
+                      "type": "integer",
+                      "description": "maximum log level to be printed in that log unit (default=largest possible level)"
+                  },
+                  "flush": {
+                      "type": "boolean",
+                      "description": "flush sink after each log",
+                      "default": false
+                  }
+              } 
+           }
+       },
+       "groups": {
+           "type": "object",
+           "description": "logger group configuration",
+           "additionalProperties": {
+              "description": "list of units",
+              "$ref": "definitions.json#/definitions/stringArrayOrEmpty"
+           }
+       }
+    }          
+}

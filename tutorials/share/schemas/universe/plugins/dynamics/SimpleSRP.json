@@ -1,0 +1,35 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Universe/Dynamics/SimpleSRP",
+    "description": "Configuration for SimpleSRP in dynamics plugin",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+        "area",
+        "cr"
+    ],
+    "properties": {
+        "point": {
+            "$ref": "definitions.json#/definitions/point"
+        },
+        "axes": {
+            "$ref": "definitions.json#/definitions/axes"
+        },
+        "area": {
+            "$ref": "definitions.json#/definitions/area"
+        },
+        "mass": {
+            "$ref": "definitions.json#/definitions/mass"
+        },
+        "cr": {
+            "description": "Reflectivity coefficient (optionally parameterized) for SRP acceleration computation",
+            "$ref": "../../../definitions.json#/definitions/scalar"
+        },
+        "occulters": {
+            "$ref": "definitions.json#/definitions/occulters"
+        },
+        "eclipseEvents": {
+            "$ref": "definitions.json#/definitions/eclipseEvents"
+        }
+    }
+}

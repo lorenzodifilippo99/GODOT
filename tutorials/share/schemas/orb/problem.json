@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Orb/Problem",
+  "description": "Orbit Determination Problem configuration",
+  "type": "object",
+  "required": [
+    "parameters",
+    "equations"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "parameters": {
+      "description": "Configuration of the OD problem parameters (validated separately)."
+    },
+    "equations": {
+      "description": "Configuration of the OD problem equations (validated separately)."
+    }
+  }
+}

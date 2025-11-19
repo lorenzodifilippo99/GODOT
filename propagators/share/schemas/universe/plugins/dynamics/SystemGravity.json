@@ -1,0 +1,39 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Universe/Dynamics/SystemGravity",
+    "description": "Configuration for SystemGravity in dynamics plugin. Note that a separate DynamicsPlugin's SystemGravity has to be defined for each point being propagated, even if using the same GravityPlugin's SystemGravity. ",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+        "model"
+    ],
+    "properties": {
+        "axes": {
+            "$ref": "definitions.json#/definitions/axes"
+        },
+        "model": {
+            "description": "Name of the gravity model in the gravity plugin to be used",
+            "type": "string"
+        },
+        "body": {
+            "description": "Optional body for which to compute the gravitational acceleration. This should be set if the point being propagated is massive and corresponds to a body in SystemGravity.",
+            "type": "string",
+            "default": "automatically generated body with null GM (body mass neglected, e.g. for spacecraft)"
+        },
+        "switch": {
+            "description": "Optional flag to enable COI switch for propagated body or not",
+            "type": "boolean",
+            "default": false
+        },
+        "disableIndirectAcc": {
+            "description": "Optional flag to disable indirect accelerations computation, e.g. if the COI is a planetary system barycenter",
+            "type": "boolean",
+            "default": false
+        },
+        "coi": {
+            "description": "COI point name, only used if the point is not propagated (otherwise overwritten by propagator)",
+            "type": "string",
+            "default": "COI is left unconfigured until propagator is initialised"
+        }
+    }
+}

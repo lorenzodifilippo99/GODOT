@@ -1,0 +1,16 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Universe/Frames/AxesAlias",
+    "description": "Configuration for AxesAlias in frames plugin",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "target"
+    ],
+    "properties": {
+        "target": {
+            "description": "Target axes in frames to be aliased to",
+            "type": "string"
+        }
+    }
+}

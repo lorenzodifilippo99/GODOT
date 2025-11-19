@@ -1,0 +1,64 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Equations",
+  "description": "Orbit Determination Equations configuration",
+  "type": "array",
+  "uniqueItems": true,
+  "items": {
+    "description": "Equation generator common configuration",
+    "type": "object",
+    "oneOf": [
+      {
+        "additionalProperties": false,
+        "required": [
+          "type",
+          "name",
+          "config"
+        ],
+        "properties": {
+          "type": {
+            "description": "Type of the equation generator.",
+            "type": "string"
+          },
+          "name": {
+            "description": "Name of the equation generator.",
+            "type": "string"
+          },
+          "config": {
+            "description": "Configuration of the equation generator, validated in a dedicated schema per each equation generator type."
+          }
+        }
+      },
+      {
+        "additionalProperties": false,
+        "required": [
+          "type",
+          "name",
+          "data"
+        ],
+        "properties": {
+          "type": {
+            "description": "Type of the equation generator.",
+            "type": "string",
+            "enum": [
+              "group"
+            ]
+          },
+          "name": {
+            "description": "Name of the equation generator.",
+            "type": "string"
+          },
+          "data": {
+            "description": "Array of equation generators to be combined in a group.",
+            "type": "array",
+            "uniqueItems": true,
+            "item": {
+              "description": "Name of the equation generator, must be previously defined in equations array.",
+              "type": "string"
+            }
+          }
+        }
+      }
+    ]
+  }
+}

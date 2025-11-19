@@ -1,0 +1,35 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Universe/Frames/DirCombined",
+    "description": "Configuration for DirCombined directions in frames plugin (i.e. combined from a list of existing directions with multipliers)",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+        "list"
+    ],
+    "properties": {
+        "list": {
+            "description": "List of directions used to build the combined direction",
+            "type": "array",
+            "uniqueItems": false,
+            "minItems": 1,
+            "items": {
+                "additionalProperties": false,
+                "required": [
+                    "dir",
+                    "multiplier"
+                ],
+                "properties": {
+                    "dir": {
+                        "description": "Name of the direction in frames",
+                        "type": "string"
+                    },
+                    "multiplier": {
+                        "description": "Multiplier of the direction to build the combined direction (scalar)",
+                        "$ref": "../../../definitions.json#/definitions/scalar"
+                    }
+                }
+            }
+        }
+    }
+}

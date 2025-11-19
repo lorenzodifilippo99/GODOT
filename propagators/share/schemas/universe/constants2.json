@@ -1,0 +1,33 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Constants plugin",
+    "description": "Constants definition",
+    "type": "array",
+    "uniqueItems": true,
+    "items": {
+        "description": "One Constants definition",
+        "type": "object",
+        "required": [
+            "name",
+            "type",
+            "config"
+        ],
+        "additionalProperties": false,
+        "properties": {
+            "name": {
+                "description": "Name of the Constants input",
+                "type": "string"
+            },
+            "type": {
+                "description": "Type of the Constants input",
+                "type": "string"
+            },
+            "config": {
+                "description": "Configuration/data of the Constants input"
+            },
+            "evaluables": {
+                "description": "Configuration to define evaluables from the constants"
+            }
+        }
+    }
+}

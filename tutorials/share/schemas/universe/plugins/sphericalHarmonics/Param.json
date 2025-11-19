@@ -1,0 +1,72 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Universe/sphericalHarmonics/File",
+    "description": "Configuration for parameterized spherical harmonics",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+        "gm",
+        "radius",
+        "point",
+        "axes",
+        "coeff"
+    ],
+    "properties": {
+        "gm": {
+            "description": "mass parameter",
+            "$ref": "../../../definitions.json#/definitions/scalar"
+        },
+        "radius": {
+            "description": "scaling radius",
+            "$ref": "../../../definitions.json#/definitions/scalar"
+        },
+        "point": {
+            "description": "Center of the body to which the gravity field is attached",
+            "type": "string"
+        },
+        "axes": {
+            "description": "Axes to which the gravity field is attached",
+            "type": "string"
+        },
+        "range": {
+            "description": "Optional max distance above which spherical harmonics are not used  (if not given, SoI is used)",
+            "$ref": "../../../definitions.json#/definitions/scalar"
+        },
+        "normalized": {
+            "description": "Are coefficients normalized?",
+            "type": "boolean",
+            "default": false
+        },
+        "order": {
+            "description": "Optional max default order (otherwise largest degree in coeff input)",
+            "type": "integer"
+        },
+        "degree": {
+            "description": "Optional max default degree (otherwise largest order in coeff input)",
+            "type": "integer"
+        },
+        "rorder": {
+            "description": "Optional max indirect order (otherwise same as degree)",
+            "type": "integer"
+        },
+        "rdegree": {
+            "description": "Optional max indirect degree (otherwise same as order)",
+            "type": "integer"
+        },
+        "coeff": {
+            "description": "Coefficient array",
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+                "key": {
+                    "description": "Coefficient key, eg C_2_0 or S_12_3",
+                    "type": "string"
+                },
+                "value": {
+                    "description": "Coefficient value",
+                    "type": "../../../definitions.json#/definitions/scalar"
+                }
+            }
+        }
+    }
+}

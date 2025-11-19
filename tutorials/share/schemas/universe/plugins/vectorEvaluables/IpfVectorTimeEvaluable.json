@@ -1,0 +1,38 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Universe/VectorEvaluables/IpfVectorTimeEvaluable",
+    "description": "Configuration for IpfVectorTimeEvaluable in evaluables plugin",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+        "file",
+        "timescale"
+    ],
+    "properties": {
+        "file": {
+            "description": "IPF file path",
+            "type": "string"
+        },
+        "timescale": {
+            "description": "Timescale of the IPF key (assumed to be MJD2000)",
+            "type": "string"
+        },
+        "blockEvents": {
+            "description": "Optional flag to include IPF blocks as dynamic events or not",
+            "type": "boolean",
+            "default": true
+        },
+        "eventTimescale": {
+            "description": "Timescale of event storage (defaults to universe timescale)",
+            "type": "string"
+        },
+        "interpOrder": {
+            "description": "Optional interpolation order for the IPF. If not given, hard coded InterpolationDefaults are used.",
+            "type": "integer"
+        },
+        "derivOrder": {
+            "description": "derivative order (defaults to 0 for no derivative) derivatives are rescaled to be in IPF state units per second (first derivative), per second squared (second derivative)...",
+            "type": "integer"
+        }
+    }
+}

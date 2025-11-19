@@ -1,0 +1,182 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Opt/Problem",
+  "description": "Optimization Problem configuration",
+  "type": "object",
+  "required": [
+    "parameters"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "alias": {
+      "description": "Definition of alias for simpler configuration of free parameters",
+      "type": "object",
+      "additionalProperties": {
+        "description": "One definition of an alias",
+        "type": "array",
+        "minItems": 1,
+        "uniqueItems": true,
+        "items": {
+          "description": "Name of one free variable in the definition",
+          "type": "string"
+        }
+      }
+    },
+    "parameters": {
+      "description": "Definition of parameters used to define free variables of the problem",
+      "type": "object",
+      "required": [
+        "free"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "free": {
+          "description": "List of names of free variables",
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "description": "Name of one free variable",
+            "type": "string"
+          }
+        },
+        "scales": {
+          "description": "Definition of manual scaling for each free parameter",
+          "type": "object",
+          "additionalProperties": {
+            "description": "Scale for a single parameter including unit",
+            "examples": [
+              "1.0 day",
+              "1000 km"
+            ],
+            "type": "string"
+          }
+        },
+        "bounds": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 2,
+            "items": {
+              "description": "Bounds for a single parameter including unit",
+              "examples": [
+                "-1000 km",
+                "1000 km"
+              ],
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "events": {
+      "$ref": "../eventManager.json"
+    },
+    "objective": {
+      "description": "Defines the objective of the problem",
+      "type": "object",
+      "required": [
+        "type",
+        "point",
+        "value"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "description": "Decides if objective function is to be minimised or maximised",
+          "examples": [
+            "minimise",
+            "maximise"
+          ],
+          "default": "minimise",
+          "type": "string",
+          "enum": [
+            "minimise",
+            "maximise"
+          ]
+        },
+        "point": {
+          "description": "Defines the point at which the quantity is to be optimized",
+          "type": "string"
+        },
+        "value": {
+          "description": "Defines the function to be optimized",
+          "type": "string"
+        },
+        "scale": {
+          "description": "Scale of the objective value",
+          "type": "number"
+        }
+      }
+    },
+    "constraints": {
+      "description": "Defines the constraints of the problem",
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "oneOf": [
+          {
+            "description": "Compact short-hand function constraint definition",
+            "type": "string",
+            "default": "NAME: EXPR [<=>] VALUE @ POINT | SCALE",
+            "pattern": "^(([a-zA-Z0-9_]+)\\s*;\\s*)?([a-zA-Z0-9_#]+)\\s*([=|<|>])\\s*(.+)\\s*@\\s*(.+)\\s*\\|\\s*(.+)$"
+          },
+          {
+            "description": "Compact short-hand epoch constraint definition",
+            "type": "string",
+            "default": "NAME: EPOCH1(OR POINT1) [<=>] EPOCH2(OR POINT2)",
+            "pattern": "^(([a-zA-Z0-9_]+)\\s*;\\s*)?([a-zA-Z0-9_]+)\\s*([=|<|>])\\s*([a-zA-Z0-9_]+)$"
+          },
+          {
+            "description": "Detailed constraint definition",
+            "type": "object",
+            "required": [
+              "expression",
+              "type",
+              "value",
+              "point",
+              "scale"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "expression": {
+                "description": "Constraint function",
+                "type": "string"
+              },
+              "type": {
+                "description": "Constraint type",
+                "type": "string",
+                "default": "equal",
+                "enum": [
+                  "equal",
+                  "less",
+                  "greater",
+                  "fit"
+                ]
+              },
+              "value": {
+                "description": "Value of the constraint to match",
+                "type": "string"
+              },
+              "point": {
+                "description": "Point at which the constraint function is defined",
+                "type": "string"
+              },
+              "scale": {
+                "description": "Scale of the constraint",
+                "examples": [
+                  0.3,
+                  15,
+                  1e-3
+                ],
+                "default": 1.0,
+                "type": "number"
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

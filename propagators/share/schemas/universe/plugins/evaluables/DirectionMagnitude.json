@@ -1,0 +1,21 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Universe/Evaluables/DirectionMagnitude",
+    "description": "Configuration for DirectionMagnitude in evaluables plugin",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+        "dir"
+    ],
+    "properties": {
+        "dir": {
+            "description": "Name of direction in frames plugin.",
+            "type": "string"
+        },
+        "axes": {
+            "description": "Name of axes for evaluation",
+            "type": "string",
+            "default": "Use base axes of input direction. In case it is undefined an axes must be specified here!"
+        }
+    }
+}

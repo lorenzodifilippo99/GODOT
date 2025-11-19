@@ -1,0 +1,102 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Fluids plugin",
+    "description": "Gas and liquid model definitions",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "liquids": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+                "description": "One liquid model definition",
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                    "name",
+                    "type",
+                    "config"
+                ],
+                "properties": {
+                    "name": {
+                        "description": "Name of the liquid model",
+                        "type": "string"
+                    },
+                    "type": {
+                        "description": "Liquid model to be used",
+                        "examples": [
+                            "polynomial"
+                        ],
+                        "type": "string"
+                    },
+                    "config": {
+                        "description": "Configuration for liquid model construction",
+                        "type": "object"
+                    }
+                }
+            }
+        },
+        "gases": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+                "description": "One gas model definition",
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                    "name",
+                    "type",
+                    "config"
+                ],
+                "properties": {
+                    "name": {
+                        "description": "Name of the gas model",
+                        "type": "string"
+                    },
+                    "type": {
+                        "description": "Gas model to be used",
+                        "examples": [
+                            "ideal"
+                        ],
+                        "type": "string"
+                    },
+                    "config": {
+                        "description": "Configuration for gas model construction",
+                        "type": "object"
+                    }
+                }
+            }
+        },
+        "evaluables": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+                "description": "Evaluable definition",
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                    "name",
+                    "type",
+                    "config"
+                ],
+                "properties": {
+                    "name": {
+                        "description": "Name of the evaluable,",
+                        "type": "string"
+                    },
+                    "type": {
+                        "description": "Type of evaluable",
+                        "examples": [
+                            "gas_volume"
+                        ],
+                        "type": "string"
+                    },
+                    "config": {
+                        "description": "Configuration for evaluable",
+                        "type": "object"
+                    }
+                }
+            }
+        }
+    }
+}

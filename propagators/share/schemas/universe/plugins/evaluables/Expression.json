@@ -1,0 +1,16 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Universe/Evaluables/Expression",
+    "description": "Creates an evaluable from an expression",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+        "expression"
+    ],
+    "properties": {
+        "expression": {
+            "description": "expression",
+            "$ref": "../../../definitions.json#/definitions/scalar"
+        }
+    }
+}

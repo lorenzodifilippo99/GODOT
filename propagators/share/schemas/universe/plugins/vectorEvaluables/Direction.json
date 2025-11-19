@@ -1,0 +1,26 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Universe/VectorEvaluables/Direction",
+    "description": "Direction evaluates in given axes with optional derivatives",
+    "type": "object",
+    "required": [
+        "dir",
+        "axes"
+    ],
+    "additionalProperties": false,
+    "properties": {
+        "dir": {
+            "description": "Direction to evaluate",
+            "type": "string"
+        },
+        "axes": {
+            "description": "Evaluation axes",
+            "type": "string"
+        },
+        "order": {
+            "description": "Order of Cartesian vector to be generated (0 to 3)",
+            "type": "number",
+            "default": 0
+        }
+    }
+}

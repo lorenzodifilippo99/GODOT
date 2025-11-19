@@ -1,0 +1,24 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Universe/Frames/PointOem",
+    "description": "Configuration for PointOem points in frames plugin",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+        "file"
+    ],
+    "properties": {
+        "file": {
+            "description": "Orbit OEM file path",
+            "type": "string"
+        },
+        "pointMapping": {
+            "description": "Custom point mapping to be used to define the frames name of the OEM centres. There is already some default mappings that are applied apriori.",
+            "type": "string"
+        },
+        "axesMapping": {
+            "description": "Custom axes mapping to be used to define the frames name of the OEM axes. There is already some default mappings that are applied apriori.",
+            "type": "string"
+        }
+    }
+}

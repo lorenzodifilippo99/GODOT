@@ -1,0 +1,175 @@
+version: '3.0'
+
+spacetime:
+  system: BCRS
+
+ephemeris:
+  - name: de432
+    files:
+      - data/ephemeris/jpl/de432s.bsp
+  - name: gm431
+    files:
+      - data/ephemeris/jpl/gm_de431.tpc
+
+frames:
+  - name: ephem1
+    type: Ephem
+    config:
+      source: de432
+
+  - name: EMC
+    type: AxesOrient
+    config:
+      model: EMCJ2000
+
+  - name: Mars
+    type: PointAlias
+    config:
+      target: MarsBarycenter
+
+  - name: Mars
+    type: AxesOrient
+    config:
+      model: MarsIAU2009
+
+  - name: EarthLocal
+    type: AxesLocalOrbital
+    config:
+      center: Sun
+      target: Earth
+      axes: Pos
+
+  - name: MarsLocal
+    type: AxesLocalOrbital
+    config:
+      center: Sun
+      target: Mars
+      axes: Pos
+
+  - name: ITRF
+    type: AxesOrient
+    config:
+      model: IERS2000   # Earth body fixed model
+      nutation: data/orient/nutation2000A.ipf   # Supply nutation interpolation file
+      erp: ''   # Use no pole correction
+
+constants:
+  ephemeris:
+    - source: gm431
+
+bodies:
+  - name: Sun
+    point: Sun
+  - name: Earth
+    point: Earth
+  - name: Moon
+    point: Moon
+  - name: Mars
+    point: Mars
+
+gravity:
+  - name: ChaserGravity
+    bodies:
+      - Sun
+      - Earth
+      - Moon
+      - Mars
+  - name: TargetGravity
+    bodies:
+      - Sun
+      - Earth
+      - Moon
+      - Mars
+
+atmosphere:
+ - name: EarthAtmos
+   type: nrlmsise00
+   config:
+    point: Earth
+    axes: ITRF
+    file: data/atmos/solmag.ipf
+
+dynamics:
+  - name: ChaserGravityOnly
+    type: SystemGravity
+    config:
+      model: ChaserGravity #SunEarthMarsGravity
+      switch: true
+
+  - name: TargetGravityOnly
+    type: SystemGravity
+    config:
+      model: TargetGravity #SunEarthMarsGravity
+      switch: true
+
+  - name: SRPChaser
+    type: SimpleSRP
+    config:
+      mass: chaser_mass
+      area: chaser_srp_area
+      cr: chaser_srp_cr
+      occulters:
+        - Earth
+        - Moon
+  
+  - name: SRPTarget
+    type: SimpleSRP
+    config:
+      mass: target_mass
+      area: target_srp_area
+      cr: target_srp_cr
+      occulters:
+        - Earth
+        - Moon
+
+  - name: DragChaser
+    type: SimpleDrag
+    config:
+      atmosphere: EarthAtmos
+      mass: chaser_mass
+      area: chaser_drag_area
+      cd: chaser_drag_cd
+
+  - name: DragTarget
+    type: SimpleDrag
+    config:
+      atmosphere: EarthAtmos
+      mass: target_mass
+      area: target_drag_area
+      cd: target_drag_cd
+
+  - name: ChaserDynamics
+    type: Combined
+    config:
+        - ChaserGravityOnly
+        - SRPChaser
+        - DragChaser
+
+  - name: TargetDynamics
+    type: Combined
+    config:
+        - TargetGravityOnly
+        - SRPTarget
+        - DragTarget
+
+spacecraft:
+  - name: chaser
+    mass: 100 kg
+    srp:
+      area: 1 m^2
+      cr: 1.7
+    drag:
+      area: 1 m^2
+      cd: 2.2
+    # thrusters:
+    #   - name: main
+    #     thrust: 100 N
+    #     isp: 320 s
+  - name: target
+    mass: 100 kg
+    srp:
+      area: 1 m^2
+      cr: 1.7
+    drag:
+      area: 1 m^2
+      cd: 2.2

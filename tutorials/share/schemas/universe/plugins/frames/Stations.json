@@ -1,0 +1,77 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Universe/Frames/AxesOrient",
+    "description": "Configuration for Stations points/axes in frames plugin",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+        "source"
+    ],
+    "properties": {
+        "source": {
+            "description": "Stations source (i.e. name of a databased loaded in the universe)",
+            "type": "string"
+        },
+        "axes": {
+            "description": "Optional boolean flag to load stations axes into frames",
+            "default": true,
+            "type": "boolean"
+        },
+        "points": {
+            "description": "Optional boolean flag to load stations points into frames",
+            "default": true,
+            "type": "boolean"
+        },
+        "stationsCorrection": {
+            "description": "Optional array with station coordinates corrections map",
+            "type": "array",
+            "uniqueItems": true,
+            "additionalProperties": false,
+            "required": [
+                "name",
+                "axes",
+                "correction"
+            ],
+            "items": {
+                "name": {
+                    "description": "Name of the Station",
+                    "type": "string"
+                },
+                "axes": {
+                    "description": "Axes frame for the coordinates correction model",
+                    "type": "string"
+                },
+                "correction": {
+                    "description": "Station coordinates correction vector (three distances in km)",
+                    "$ref": "../../../definitions.json#/definitions/vector3"
+                }
+            }
+        },
+        "lorentz": {
+            "description": "Optional boolean flag to apply Lorentz corrections to the station coordinates",
+            "default": false,
+            "type": "boolean"
+        },
+        "tides": {
+            "description": "Optional array with tide models. NOTE: currently only a single model can be activated.",
+            "type": "array",
+            "uniqueItems": true,
+            "additionalProperties": false,
+            "items": {
+                "active": {
+                    "description": "Boolean flag to specify if model is active or not",
+                    "type": "boolean",
+                    "default": true
+                },
+                "model": {
+                    "description": "Name of the tides model. NOTE: currently only 'solidEarth' is supported",
+                    "type": "string"
+                },
+                "ephem": {
+                    "description": "Name of ephemerides to be used in the tides model",
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

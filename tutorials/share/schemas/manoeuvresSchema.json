@@ -1,0 +1,297 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Manoeuvres",
+  "description": "Floating manoeuvres definition",
+  "definitions": {
+    "imp-dir-cart": {
+      "description": "Impulsive manoeuvre direction model using Cartesian formulation",
+      "type": "object",
+      "required": [
+        "axes",
+        "dv_x",
+        "dv_y",
+        "dv_z"
+      ],
+      "properties": {
+        "axes": {
+          "description": "Axes of the impulsive Cartesian delta-V",
+          "type": "string",
+          "examples": [
+            "ICRF"
+          ],
+          "default": "ICRF"
+        },
+        "dv_x": {
+          "description": "Delta-V X component",
+          "type": "string",
+          "examples": [
+            "1 m/s",
+            "0.5 mm/s",
+            "-1.6 mm/s"
+          ],
+          "default": "0.0 m/s"
+        },
+        "dv_y": {
+          "description": "Delta-V Y component",
+          "type": "string",
+          "examples": [
+            "1 m/s",
+            "0.5 mm/s",
+            "-1.6 mm/s"
+          ],
+          "default": "0.0 m/s"
+        },
+        "dv_z": {
+          "description": "Delta-V Z component",
+          "type": "string",
+          "examples": [
+            "1 m/s",
+            "0.5 mm/s",
+            "-1.6 mm/s"
+          ],
+          "default": "0.0 m/s"
+        }
+      }
+    },
+    "fin-dir-cart": {
+      "description": "Finite manoeuvre direction model using Cartesian formulation",
+      "type": "object",
+      "required": [
+        "axes",
+        "acc_x",
+        "acc_y",
+        "acc_z"
+      ],
+      "properties": {
+        "axes": {
+          "description": "Axes of the Cartesian acceleration",
+          "type": "string",
+          "examples": [
+            "ICRF"
+          ],
+          "default": "ICRF"
+        },
+        "acc_x": {
+          "description": "Acceleration X component",
+          "type": "string",
+          "examples": [
+            "1 mm/s^2",
+            "0.5 mm/s^2",
+            "-1.6 mm/s^2"
+          ],
+          "default": "0.0 mm/s^2"
+        },
+        "acc_y": {
+          "description": "Acceleration Y component",
+          "type": "string",
+          "examples": [
+            "1 mm/s^2",
+            "0.5 mm/s^2",
+            "-1.6 mm/s^2"
+          ],
+          "default": "0.0 mm/s^2"
+        },
+        "acc_z": {
+          "description": "Acceleration Z component",
+          "type": "string",
+          "examples": [
+            "1 mm/s^2",
+            "0.5 mm/s^2",
+            "-1.6 mm/s^2"
+          ],
+          "default": "0.0 mm/s^2"
+        }
+      }
+    },
+    "imp-dir-pol": {
+      "description": "Configuration of the manoeuvre direction model using spherical coordinates",
+      "type": "object",
+      "required": [
+        "axes",
+        "mag",
+        "ras",
+        "dec"
+      ],
+      "properties": {
+        "axes": {
+          "description": "Axes of the impulsive spherical delta-V",
+          "type": "string",
+          "examples": [
+            "ICRF"
+          ],
+          "default": "ICRF"
+        },
+        "mag": {
+          "description": "Impulsive delta-V magnitude",
+          "type": "string",
+          "examples": [
+            "1 m/s",
+            "0.5 mm/s",
+            "-1.6 mm/s"
+          ],
+          "default": "0.0 m/s"
+        },
+        "ras": {
+          "description": "Impulsive delta-V right ascension",
+          "type": "string",
+          "examples": [
+            "0 deg, 90 deg, -90 deg, 180 deg"
+          ],
+          "default": "0.0 deg"
+        },
+        "dec": {
+          "description": "Impulsive delta-V declination",
+          "type": "string",
+          "examples": [
+            "0 deg, 30 deg, -30 deg"
+          ],
+          "default": "0.0 deg"
+        }
+      }
+    },
+    "fin-dir-pol": {
+      "description": "Configuration of the manoeuvre direction model using spherical coordinates",
+      "type": "object",
+      "required": [
+        "axes",
+        "mag",
+        "ras",
+        "dec"
+      ],
+      "properties": {
+        "axes": {
+          "description": "Axes of the spherical acceleration",
+          "type": "string",
+          "examples": [
+            "ICRF"
+          ],
+          "default": "ICRF"
+        },
+        "mag": {
+          "description": "Acceleration magnitude",
+          "type": "string",
+          "examples": [
+            "1 mm/s^2",
+            "0.5 mm/s^2",
+            "-1.6 mm/s^2"
+          ],
+          "default": "0.0 m/s^2"
+        },
+        "ras": {
+          "description": "Acceleration right ascension",
+          "type": "string",
+          "examples": [
+            "0 deg, 90 deg, -90 deg, 180 deg"
+          ],
+          "default": "0.0 deg"
+        },
+        "dec": {
+          "description": "Acceleration declination",
+          "type": "string",
+          "examples": [
+            "0 deg, 30 deg, -30 deg"
+          ],
+          "default": "0.0 deg"
+        }
+      }
+    }
+  },
+  "type": "array",
+  "uniqueItems": true,
+  "items": {
+    "description": "Definition of one manoeuvre",
+    "type": "object",
+    "required": [
+      "name",
+      "model",
+      "config"
+    ],
+    "additionalProperties": false,
+    "properties": {
+      "name": {
+        "description": "Manoeuvre name",
+        "type": "string"
+      },
+      "model": {
+        "description": "Manoeuvre model",
+        "type": "string",
+        "enum": [
+          "impulsive",
+          "finite"
+        ]
+      },
+      "config": {
+      }
+    },
+    "if": {
+      "properties": {
+        "model": {
+          "const": "impulsive"
+        }
+      }
+    },
+    "then": {
+      "properties": {
+        "config": {
+          "description": "Configuration of the impulsive manoeuvre",
+          "type": "object",
+          "required": [
+            "point",
+            "direction"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "point": {
+              "description": "Impulsive manoeuvre epoch",
+              "type": "string"
+            },
+            "direction": {
+              "oneOf": [
+                {
+                  "$ref": "#/definitions/imp-dir-cart"
+                },
+                {
+                  "$ref": "#/definitions/imp-dir-pol"
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "else": {
+      "properties": {
+        "config": {
+          "description": "Configuration of the finite manoeuvre",
+          "type": "object",
+          "required": [
+            "start",
+            "end",
+            "direction"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "start": {
+              "description": "Finite manoeuvre start epoch",
+              "type": "string"
+            },
+            "end": {
+              "description": "Finite manoeuvre end epoch",
+              "type": "string"
+            },
+            "direction": {
+              "oneOf": [
+                {
+                  "$ref": "#/definitions/fin-dir-cart"
+                },
+                {
+                  "$ref": "#/definitions/fin-dir-pol"
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,102 @@
+settings:
+  steps: 100000
+  relTol: 1e-09
+  absTol: 1e-09
+
+setup:
+  - name: GeoSat
+    type: group
+    spacecraft: GeoSat
+    input:
+      - name: center
+        type: point
+      - name: mass
+        type: scalar
+        unit: kg
+      - name: dv
+        type: scalar
+        unit: m/s
+
+timeline:
+  - type: control
+    name: launch
+    epoch: 0.0 TDB
+    state:
+      - name: GeoSat_center
+        body: Earth
+        axes: ICRF
+        dynamics: EMS
+        value:
+          rpe: 6678 km
+          rap: 80000 km
+          inc: 18 deg
+          ran: 0 deg
+          aop: 0 deg
+          tan: 0 deg
+      - name: GeoSat_mass
+        value: 1000 kg
+      - name: GeoSat_dv
+        value: 0 m/s
+
+  - type: manoeuvre
+    name: man1
+    model: finite
+    input: GeoSat
+    thruster: main
+    config:
+      start:
+        body: Earth
+        tan: 180 deg
+      end:
+        dv: 1100 m/s
+      direction:
+        body: Earth
+        axes: ICRF
+        ras: -90 deg
+        dec: 0 deg
+
+  - type: match
+    name: match_1
+    input: GeoSat
+    point:
+      epoch: 1.0 TDB
+    body: Earth
+    vars: equi
+
+  - type: manoeuvre
+    name: man2
+    model: finite
+    input: GeoSat
+    thruster: main
+    config:
+      start:
+        body: Earth
+        axes: ICRF
+        tlo: 0 deg
+      end:
+        dv: 600 m/s
+      direction:
+        body: Earth
+        axes: ICRF
+        ras: -90 deg
+        dec: 0 deg
+
+  - type: control
+    name: arrival
+    epoch: 2.0 TDB
+    state:
+      - name: GeoSat_center
+        body: Earth
+        axes: ICRF
+        dynamics: EMS
+        value:
+          slr: 42165.0 km
+          ecx: 0
+          ecy: 0
+          inx: 0
+          iny: 0
+          tlo: 180 deg
+      - name: GeoSat_mass
+        value: 600 kg
+      - name: GeoSat_dv
+        value: 1500 m/s

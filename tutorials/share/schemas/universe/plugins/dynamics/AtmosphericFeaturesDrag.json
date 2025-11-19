@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Universe/Dynamics/AtmosphericFeaturesDrag",
+  "description": "Configuration for AtmosphericFeaturesDrag in dynamics plugin",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "area",
+    "cd",
+    "axes",
+    "point",
+    "density"
+  ],
+  "properties": {
+    "point": {
+      "$ref": "definitions.json#/definitions/point"
+    },
+    "axes": {
+      "$ref": "definitions.json#/definitions/axes"
+    },
+    "area": {
+      "$ref": "definitions.json#/definitions/area"
+    },
+    "mass": {
+      "$ref": "definitions.json#/definitions/mass"
+    },
+    "cd": {
+      "description": "Drag Coefficient",
+      "$ref": "../../../definitions.json#/definitions/scalar"
+    },
+    "density": {
+      "description": "Name of the density model to be used by the AtmosphericFeaturesDrag",
+      "type": "string"
+    },
+    "wind": {
+      "description": "Name of the wind model to be used by the AtmosphericFeaturesDrag",
+      "type": "string"
+    }
+  }
+}

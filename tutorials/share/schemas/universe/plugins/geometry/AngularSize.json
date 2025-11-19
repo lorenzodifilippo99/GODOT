@@ -1,0 +1,28 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Universe/Geometry/AngularSize",
+    "description": "Angular size [rad] of a body from an observer",
+    "type": "object",
+    "required": [
+        "observer",
+        "body"
+    ],
+    "additionalProperties": false,
+    "properties": {
+        "observer": {
+            "description": "Observer of the angular size, a point in the frames system",
+            "type": "string",
+            "examples": [ "Solo" ]
+        },
+        "body": {
+            "description": "Body for angular size, a point in the frames system, or a body.",
+            "type": "string",
+            "examples": [ "Venus" ]
+        },
+        "bodyRadius": {
+            "description": "Assumed radius for the body (with Length units). If not specified, will be taken as the equatorial radius of the body.",
+            "type": "string",
+            "examples": [ "6052.3 km" ]
+        }
+    }
+}

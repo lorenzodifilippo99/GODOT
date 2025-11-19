@@ -1,0 +1,1126 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Trajectory",
+    "description": "Trajectory configuration",
+    "definitions": {
+        "generic": {
+            "point-epoch": {
+                "description": "Definition of an event at an epoch",
+                "type": "object",
+                "required": [
+                    "epoch"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                    "epoch": {
+                        "description": "Epoch at which event occurs",
+                        "examples": [
+                            "1234.5 TDB",
+                            "2018-06-30T00:00:00 TDB"
+                        ],
+                        "default": "0 TDB",
+                        "type": "string"
+                    }
+                }
+            },
+            "point-dt": {
+                "description": "Definition of an event with respect to another event",
+                "type": "object",
+                "required": [
+                    "reference",
+                    "dt"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                    "reference": {
+                        "description": "Reference point from which delta time is measured",
+                        "type": "string"
+                    },
+                    "dt": {
+                        "description": "Delta time measured from the reference",
+                        "examples": [
+                            "10 s",
+                            "30.0 day"
+                        ],
+                        "default": "1 day",
+                        "type": "string"
+                    }
+                }
+            },
+            "point-dv": {
+                "description": "Definition of manoeuvre delta-V magnitude for finite-manoeuvres",
+                "type": "object",
+                "required": [
+                    "dv"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                    "dv": {
+                        "description": "Manoeuvre delta-V target",
+                        "examples": [
+                            "50 m/s"
+                        ],
+                        "default": "1 m/s",
+                        "type": "string"
+                    }
+                }
+            },
+            "point-2dv": {
+                "description": "Definition of manoeuvre delta-V magnitude for impulsive manoeuvres",
+                "type": "object",
+                "required": [
+                    "dv1",
+                    "dv2"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                    "dv1": {
+                        "description": "Manoeuvre delta-V target in positive direction",
+                        "examples": [
+                            "50 m/s",
+                            "2.3 mm/s"
+                        ],
+                        "default": "0 m/s",
+                        "type": "string"
+                    },
+                    "dv2": {
+                        "description": "Manoeuvre delta-V target in negative direction",
+                        "examples": [
+                            "50 m/s",
+                            "2.3 mm/s"
+                        ],
+                        "default": "0 m/s",
+                        "type": "string"
+                    }
+                }
+            },
+            "point-3dv": {
+                "description": "Definition of manoeuvre delta-V for fixed Cartesian manoevures",
+                "type": "object",
+                "required": [
+                    "dv-x",
+                    "dv-y",
+                    "dv-z"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                    "dv-x": {
+                        "description": "Manoeuvre delta-V target in X direction",
+                        "examples": [
+                            "50 m/s"
+                        ],
+                        "default": "0 m/s",
+                        "type": "string"
+                    },
+                    "dv-y": {
+                        "description": "Manoeuvre delta-V target in Y direction",
+                        "examples": [
+                            "50 m/s"
+                        ],
+                        "default": "0 m/s",
+                        "type": "string"
+                    },
+                    "dv-z": {
+                        "description": "Manoeuvre delta-V target in Z direction",
+                        "examples": [
+                            "50 m/s"
+                        ],
+                        "default": "0 m/s",
+                        "type": "string"
+                    }
+                }
+            },
+            "point-tan": {
+                "description": "Definition of an event location in true anomaly around a body",
+                "type": "object",
+                "required": [
+                    "body",
+                    "tan"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                    "body": {
+                        "description": "Central body for true anomaly computation",
+                        "examples": [
+                            "Earth"
+                        ],
+                        "default": "Earth",
+                        "type": "string"
+                    },
+                    "tan": {
+                        "description": "True anomaly target of the event",
+                        "examples": [
+                            "0 deg",
+                            "180 deg"
+                        ],
+                        "default": "0 deg",
+                        "type": "string"
+                    }
+                }
+            },
+            "point-lon": {
+                "description": "Definition of an event location in true longitude around a body",
+                "type": "object",
+                "required": [
+                    "body",
+                    "axes",
+                    "lon"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                    "body": {
+                        "description": "Central body for true longitude computation",
+                        "examples": [
+                            "Earth"
+                        ],
+                        "default": "Earth",
+                        "type": "string"
+                    },
+                    "axes": {
+                        "description": "Axes for which true longitude is computed",
+                        "examples": [
+                            "ICRF"
+                        ],
+                        "default": "ICRF",
+                        "type": "string"
+                    },
+                    "lon": {
+                        "description": "True longitude target of the event",
+                        "examples": [
+                            "0 deg",
+                            "180 deg"
+                        ],
+                        "default": "0 deg",
+                        "type": "string"
+                    }
+                }
+            },
+            "point-c3": {
+                "description": "Definition of an event location in characteristic energy around a body",
+                "type": "object",
+                "required": [
+                    "body",
+                    "c3"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                    "body": {
+                        "description": "Central body for characteristic energy computation",
+                        "examples": [
+                            "Earth"
+                        ],
+                        "default": "Earth",
+                        "type": "string"
+                    },
+                    "c3": {
+                        "description": "Characteristic energy target of the event",
+                        "examples": [
+                            "-2.5 km^2/s^2",
+                            "61 m^2/s^2"
+                        ],
+                        "default": "0 km^2/s^2",
+                        "type": "string"
+                    }
+                }
+            },
+            "point-dist": {
+                "description": "Definition of an event location as distance from a certain body",
+                "type": "object",
+                "required": [
+                    "body",
+                    "dist"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                    "body": {
+                        "description": "Central body for distance computation",
+                        "examples": [
+                            "Earth"
+                        ],
+                        "default": "Earth",
+                        "type": "string"
+                    },
+                    "dist": {
+                        "description": "Target distance from the center of the body",
+                        "examples": [
+                            "6678 km, 42165 km"
+                        ],
+                        "default": "0 km",
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "control": {
+            "state-point": {
+                "description": "Control state defined by a point in the frame system",
+                "type": "object",
+                "required": [
+                    "center"
+                ],
+                "properties": {
+                    "center": {
+                        "description": "Center of the target final state to match",
+                        "examples": [
+                            "Asteroid"
+                        ],
+                        "default": "Asteroid",
+                        "type": "string"
+                    }
+                }
+            },
+            "state-cart": {
+                "description": "Control state defined by Cartesian position and velocity",
+                "type": "object",
+                "required": [
+                    "pos_x",
+                    "pos_y",
+                    "pos_z",
+                    "vel_x",
+                    "vel_y",
+                    "vel_z"
+                ],
+                "properties": {
+                    "pos_x": {
+                        "description": "Position vector X component",
+                        "examples": [
+                            "150.5 km",
+                            "2.5 AU"
+                        ],
+                        "default": "0 km",
+                        "type": "string"
+                    },
+                    "pos_y": {
+                        "description": "Position vector Y component",
+                        "examples": [
+                            "150.5 km",
+                            "2.5 AU"
+                        ],
+                        "default": "0 km",
+                        "type": "string"
+                    },
+                    "pos_z": {
+                        "description": "Position vector Z component",
+                        "examples": [
+                            "150.5 km",
+                            "2.5 AU"
+                        ],
+                        "default": "0 km",
+                        "type": "string"
+                    },
+                    "vel_x": {
+                        "description": "Velocity vector X component",
+                        "examples": [
+                            "3.6 km/s",
+                            "514 m/s"
+                        ],
+                        "default": "0 km/s",
+                        "type": "string"
+                    },
+                    "vel_y": {
+                        "description": "Velocity vector Y component",
+                        "examples": [
+                            "3.6 km/s",
+                            "514 m/s"
+                        ],
+                        "default": "0 km/s",
+                        "type": "string"
+                    },
+                    "vel_z": {
+                        "description": "Velocity vector Z component",
+                        "examples": [
+                            "3.6 km/s",
+                            "514 m/s"
+                        ],
+                        "default": "0 km/s",
+                        "type": "string"
+                    }
+                }
+            },
+            "state-kep": {
+                "description": "Control state defined by Classical Keplerain variables",
+                "type": "object",
+                "required": [
+                    "sma",
+                    "ecc",
+                    "inc",
+                    "ran",
+                    "aop",
+                    "tan"
+                ],
+                "properties": {
+                    "sma": {
+                        "description": "Semi-major axis",
+                        "examples": [
+                            "42165 km",
+                            "1.6 AU",
+                            "-51245.64 km"
+                        ],
+                        "default": "1 km",
+                        "type": "string"
+                    },
+                    "ecc": {
+                        "description": "Eccentricity",
+                        "examples": [
+                            "0",
+                            "0.5",
+                            "1.5"
+                        ],
+                        "default": "0",
+                        "type": "number"
+                    },
+                    "inc": {
+                        "description": "Inclination",
+                        "examples": [
+                            "0 deg",
+                            "65.2 deg"
+                        ],
+                        "default": "0 deg",
+                        "type": "string"
+                    },
+                    "ran": {
+                        "description": "Right-ascension of the ascending node",
+                        "examples": [
+                            "0 deg",
+                            "-51.7 deg"
+                        ],
+                        "default": "0 deg",
+                        "type": "string"
+                    },
+                    "aop": {
+                        "description": "Argument of pericentre",
+                        "examples": [
+                            "0 deg",
+                            "32.9 deg"
+                        ],
+                        "default": "0 deg",
+                        "type": "string"
+                    },
+                    "tan": {
+                        "description": "True anomaly",
+                        "examples": [
+                            "0 deg",
+                            "-37.3 deg"
+                        ],
+                        "default": "0 deg",
+                        "type": "string"
+                    }
+                }
+            },
+            "state-kepRad": {
+                "type": "object",
+                "required": [
+                    "rpe",
+                    "rap",
+                    "inc",
+                    "ran",
+                    "aop",
+                    "tan"
+                ],
+                "properties": {
+                    "rpe": {
+                        "type": "string"
+                    },
+                    "rap": {
+                        "type": "string"
+                    },
+                    "inc": {
+                        "type": "string"
+                    },
+                    "ran": {
+                        "type": "string"
+                    },
+                    "aop": {
+                        "type": "string"
+                    },
+                    "tan": {
+                        "type": "string"
+                    }
+                }
+            },
+            "state-equi": {
+                "type": "object",
+                "required": [
+                    "slr",
+                    "ecx",
+                    "ecy",
+                    "inx",
+                    "iny",
+                    "lon"
+                ],
+                "properties": {
+                    "slr": {
+                        "type": "string"
+                    },
+                    "ecx": {
+                        "type": "number"
+                    },
+                    "ecy": {
+                        "type": "number"
+                    },
+                    "inx": {
+                        "type": "number"
+                    },
+                    "iny": {
+                        "type": "number"
+                    },
+                    "lon": {
+                        "type": "string"
+                    }
+                }
+            },
+            "state-circ": {
+                "type": "object",
+                "required": [
+                    "sma",
+                    "ecx",
+                    "ecy",
+                    "inc",
+                    "ran",
+                    "lat"
+                ],
+                "properties": {
+                    "sma": {
+                        "type": "string"
+                    },
+                    "ecx": {
+                        "type": "number"
+                    },
+                    "ecy": {
+                        "type": "number"
+                    },
+                    "inc": {
+                        "type": "string"
+                    },
+                    "ran": {
+                        "type": "string"
+                    },
+                    "lat": {
+                        "type": "string"
+                    }
+                }
+            },
+            "state-planar": {
+                "type": "object",
+                "required": [
+                    "c3",
+                    "rpe",
+                    "pha",
+                    "inx",
+                    "iny",
+                    "tan"
+                ],
+                "properties": {
+                    "c3": {
+                        "type": "string"
+                    },
+                    "rpe": {
+                        "type": "string"
+                    },
+                    "pha": {
+                        "type": "string"
+                    },
+                    "inx": {
+                        "type": "number"
+                    },
+                    "iny": {
+                        "type": "number"
+                    },
+                    "tan": {
+                        "type": "string"
+                    }
+                }
+            },
+            "state-vinf": {
+                "type": "object",
+                "required": [
+                    "var",
+                    "vad",
+                    "vin",
+                    "vdr",
+                    "vdd",
+                    "tan"
+                ],
+                "properties": {
+                    "var": {
+                        "type": "string"
+                    },
+                    "vad": {
+                        "type": "string"
+                    },
+                    "vin": {
+                        "type": "string"
+                    },
+                    "vdr": {
+                        "type": "string"
+                    },
+                    "vdd": {
+                        "type": "string"
+                    },
+                    "tan": {
+                        "type": "string"
+                    }
+                }
+            },
+            "state-vinfDep": {
+                "type": "object",
+                "required": [
+                    "vin",
+                    "vdr",
+                    "vdd",
+                    "inc",
+                    "rpe",
+                    "tan"
+                ],
+                "properties": {
+                    "vin": {
+                        "type": "string"
+                    },
+                    "vdr": {
+                        "type": "string"
+                    },
+                    "vdd": {
+                        "type": "string"
+                    },
+                    "inc": {
+                        "type": "string"
+                    },
+                    "rpe": {
+                        "type": "string"
+                    },
+                    "tan": {
+                        "type": "string"
+                    }
+                }
+            },
+            "state-vinfBplane": {
+                "type": "object",
+                "required": [
+                    "vin",
+                    "var",
+                    "vad",
+                    "bt",
+                    "br",
+                    "tan"
+                ],
+                "properties": {
+                    "vin": {
+                        "type": "string"
+                    },
+                    "var": {
+                        "type": "string"
+                    },
+                    "vad": {
+                        "type": "string"
+                    },
+                    "bt": {
+                        "type": "string"
+                    },
+                    "br": {
+                        "type": "string"
+                    },
+                    "tan": {
+                        "type": "string"
+                    }
+                }
+            },
+            "state-geod": {
+                "type": "object",
+                "required": [
+                    "lat",
+                    "lon",
+                    "alt",
+                    "vel_x",
+                    "vel_y",
+                    "vel_z"
+                ],
+                "properties": {
+                    "lat": {
+                        "type": "string"
+                    },
+                    "lon": {
+                        "type": "string"
+                    },
+                    "alt": {
+                        "type": "string"
+                    },
+                    "vel_x": {
+                        "type": "string"
+                    },
+                    "vel_y": {
+                        "type": "string"
+                    },
+                    "vel_z": {
+                        "type": "string"
+                    }
+                }
+            },
+            "state-custom": {
+                "type": "object"
+            }
+        },
+        "manoeuvre": {
+            "dir-pol": {
+                "type": "object",
+                "required": [
+                    "axes",
+                    "ras",
+                    "dec"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                    "body": {
+                        "type": "string"
+                    },
+                    "axes": {
+                        "type": "string"
+                    },
+                    "ras": {
+                        "type": "string"
+                    },
+                    "dec": {
+                        "type": "string"
+                    },
+                    "rasRate": {
+                        "type": "string"
+                    },
+                    "decRate": {
+                        "type": "string"
+                    }
+                },
+                "if": {
+                    "properties": {
+                        "axes": {
+                            "enum": [
+                                "Pos",
+                                "Vel"
+                            ]
+                        }
+                    }
+                },
+                "then": {
+                    "required": [
+                        "body",
+                        "axes",
+                        "ras",
+                        "dec"
+                    ]
+                }
+            },
+            "dir-cart": {
+                "type": "object",
+                "required": [
+                    "axes"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                    "axes": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "timeline": {
+            "control": {
+                "description": "Control timeline element definition",
+                "type": "object",
+                "required": [
+                    "epoch",
+                    "body",
+                    "axes",
+                    "dynamics",
+                    "state"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "constant": "control"
+                    },
+                    "epoch": {
+                        "type": "string"
+                    },
+                    "body": {
+                        "type": "string"
+                    },
+                    "coi": {
+                        "type": "string"
+                    },
+                    "axes": {
+                        "type": "string"
+                    },
+                    "dynamics": {
+                        "type": "string"
+                    },
+                    "state": {
+                        "required": [
+                            "mass",
+                            "dv"
+                        ],
+                        "properties": {
+                            "mass": {
+                                "description": "Mass of the spacecraft at the control point",
+                                "examples": [
+                                    "1000 kg"
+                                ],
+                                "default": "1000 kg",
+                                "type": "string"
+                            },
+                            "dv": {
+                                "description": "Accumulated delta-V of the spacecraft at the control point",
+                                "examples": [
+                                    "0 m/s",
+                                    "1.5 km/s"
+                                ],
+                                "default": "0 m/s",
+                                "type": "string"
+                            }
+                        },
+                        "anyOf": [
+                            {
+                                "$ref": "#/definitions/control/state-point"
+                            },
+                            {
+                                "$ref": "#/definitions/control/state-cart"
+                            },
+                            {
+                                "$ref": "#/definitions/control/state-kep"
+                            },
+                            {
+                                "$ref": "#/definitions/control/state-kepRad"
+                            },
+                            {
+                                "$ref": "#/definitions/control/state-equi"
+                            },
+                            {
+                                "$ref": "#/definitions/control/state-circ"
+                            },
+                            {
+                                "$ref": "#/definitions/control/state-planar"
+                            },
+                            {
+                                "$ref": "#/definitions/control/state-vinf"
+                            },
+                            {
+                                "$ref": "#/definitions/control/state-vinfDep"
+                            },
+                            {
+                                "$ref": "#/definitions/control/state-vinfBplane"
+                            },
+                            {
+                                "$ref": "#/definitions/control/state-geod"
+                            }
+                        ]
+                    }
+                }
+            },
+            "manoeuvre": {
+                "description": "Manoeuvre timeline element definition",
+                "type": "object",
+                "required": [
+                    "thruster",
+                    "impulsive"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "constant": "manoeuvre"
+                    },
+                    "thruster": {
+                        "type": "string"
+                    },
+                    "impulsive": {
+                        "type": "boolean"
+                    },
+                    "start": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/definitions/generic/point-epoch"
+                            },
+                            {
+                                "$ref": "#/definitions/generic/point-dt"
+                            },
+                            {
+                                "$ref": "#/definitions/generic/point-tan"
+                            },
+                            {
+                                "$ref": "#/definitions/generic/point-lon"
+                            },
+                            {
+                                "$ref": "#/definitions/generic/point-dist"
+                            }
+                        ]
+                    },
+                    "end": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/definitions/generic/point-epoch"
+                            },
+                            {
+                                "$ref": "#/definitions/generic/point-dt"
+                            },
+                            {
+                                "$ref": "#/definitions/generic/point-tan"
+                            },
+                            {
+                                "$ref": "#/definitions/generic/point-lon"
+                            },
+                            {
+                                "$ref": "#/definitions/generic/point-dist"
+                            },
+                            {
+                                "$ref": "#/definitions/generic/point-dv"
+                            },
+                            {
+                                "$ref": "#/definitions/generic/point-2dv"
+                            },
+                            {
+                                "$ref": "#/definitions/generic/point-3dv"
+                            },
+                            {
+                                "$ref": "#/definitions/generic/point-c3"
+                            }
+                        ]
+                    },
+                    "direction": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/definitions/manoeuvre/dir-pol"
+                            },
+                            {
+                                "$ref": "#/definitions/manoeuvre/dir-cart"
+                            }
+                        ]
+                    }
+                }
+            },
+            "match": {
+                "description": "Matching point timeline element definition",
+                "type": "object",
+                "required": [
+                    "body",
+                    "vars"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "constant": "match"
+                    },
+                    "point": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/definitions/generic/point-epoch"
+                            },
+                            {
+                                "$ref": "#/definitions/generic/point-dt"
+                            },
+                            {
+                                "$ref": "#/definitions/generic/point-tan"
+                            },
+                            {
+                                "$ref": "#/definitions/generic/point-lon"
+                            },
+                            {
+                                "$ref": "#/definitions/generic/point-dist"
+                            }
+                        ]
+                    },
+                    "left": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/definitions/generic/point-epoch"
+                            },
+                            {
+                                "$ref": "#/definitions/generic/point-dt"
+                            },
+                            {
+                                "$ref": "#/definitions/generic/point-tan"
+                            },
+                            {
+                                "$ref": "#/definitions/generic/point-lon"
+                            },
+                            {
+                                "$ref": "#/definitions/generic/point-dist"
+                            }
+                        ]
+                    },
+                    "right": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/definitions/generic/point-epoch"
+                            },
+                            {
+                                "$ref": "#/definitions/generic/point-dt"
+                            },
+                            {
+                                "$ref": "#/definitions/generic/point-tan"
+                            },
+                            {
+                                "$ref": "#/definitions/generic/point-lon"
+                            },
+                            {
+                                "$ref": "#/definitions/generic/point-dist"
+                            }
+                        ]
+                    },
+                    "body": {
+                        "type": "string"
+                    },
+                    "vars": {
+                        "type": "string",
+                        "enum": [
+                            "cart",
+                            "kep",
+                            "equi"
+                        ]
+                    },
+                    "scale": {
+                        "description": "Match constraint scaling vector for the constraint",
+                        "type": "array",
+                        "minItems": 6,
+                        "maxItems": 6,
+                        "items": {
+                            "description": "Match constraint scaling for the n-th state variable",
+                            "examples": [
+                                1e-3,
+                                1e-6
+                            ],
+                            "type": "number"
+                        }
+                    }
+                }
+            },
+            "point": {
+                "description": "Propagation point timeline element definition",
+                "type": "object",
+                "required": [
+                    "point"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "constant": "point"
+                    },
+                    "point": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/definitions/generic/point-epoch"
+                            },
+                            {
+                                "$ref": "#/definitions/generic/point-dt"
+                            },
+                            {
+                                "$ref": "#/definitions/generic/point-tan"
+                            },
+                            {
+                                "$ref": "#/definitions/generic/point-lon"
+                            },
+                            {
+                                "$ref": "#/definitions/generic/point-dist"
+                            }
+                        ]
+                    }
+                }
+            }
+        }
+    },
+    "type": "object",
+    "required": [
+        "spacecraft",
+        "timeline"
+    ],
+    "additionalProperties": false,
+    "properties": {
+        "spacecraft": {
+            "description": "Name of the spacecraft defined in the universe",
+            "type": "string"
+        },
+        "settings": {
+            "description": "Generic settings regarding the trajectory computation",
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "steps": {
+                    "description": "Maximum number of steps a propagator is allowed to take",
+                    "default": 100000,
+                    "examples": [
+                        1000,
+                        1000000
+                    ],
+                    "type": "integer"
+                },
+                "tol": {
+                    "description": "Numerical relative error tolerance for the propagator",
+                    "default": 1e-9,
+                    "examples": [
+                        1e-6,
+                        1e-9,
+                        1e-11
+                    ],
+                    "type": "number"
+                },
+                "stepper": {
+                    "description": "Numerical integration stepper method to use during propagation",
+                    "default": "rk787",
+                    "type": "string",
+                    "enum": [
+                        "rk787",
+                        "rk788",
+                        "adams"
+                    ]
+                }
+            }
+        },
+        "timeline": {
+            "description": "Strict timeline of the elements building the trajectory",
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+                "required": [
+                    "name",
+                    "type"
+                ],
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string",
+                        "enum": [
+                            "control",
+                            "manoeuvre",
+                            "match",
+                            "point"
+                        ]
+                    }
+                },
+                "oneOf": [
+                    {
+                        "$ref": "#/definitions/timeline/control"
+                    },
+                    {
+                        "$ref": "#/definitions/timeline/manoeuvre"
+                    },
+                    {
+                        "$ref": "#/definitions/timeline/match"
+                    },
+                    {
+                        "$ref": "#/definitions/timeline/point"
+                    }
+                ]
+            }
+        }
+    }
+}

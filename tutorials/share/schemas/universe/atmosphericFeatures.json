@@ -1,0 +1,65 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Atmosphere Features Plugin",
+  "description": "Atmospheric Components Definition",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "density": {
+      "description": "Defined density models which can be used by AtmosphericFeaturesDrag dynamics",
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "description": "Configuration for a specific density model",
+        "type": "object",
+        "required": [
+          "name",
+          "type"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "description": "Name of the density model which is used to reference it",
+            "type": "string"
+          },
+          "type": {
+            "description": "The concrete type of the density model (e.g. JB2008, MSISv2 or DTM2020)",
+            "type": "string"
+          },
+          "config": {
+            "description": "Configuration for the specific density model (e.g. Solmag index files or Height, Density, Scale for a Exponential Model)",
+            "type": "object"
+          }
+        }
+      }
+    },
+    "wind": {
+      "description": "Defined wind models which can be used by AtmosphericFeaturesDrag dynamics",
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "description": "Configuration for a specific wind model",
+        "type": "object",
+        "required": [
+          "name",
+          "type"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "description": "Name of the wind model which is used to reference it",
+            "type": "string"
+          },
+          "type": {
+            "description": "The concret type of the wind model (e.g. HWM14 or HWM07)",
+            "type": "string"
+          },
+          "config": {
+            "description": "Configuration for the specific wind model (e.g. Solmag index files)",
+            "type": "object"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Universe/Frames/AxesLocalOrbital",
+    "description": "Configuration for AxesLocalOrbital axes in frames plugin (i.e. based on state vector from center to target, with different options specified by axes)",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+        "center",
+        "target",
+        "axes"
+    ],
+    "properties": {
+        "center": {
+            "description": "Name of point in frames acting as center",
+            "type": "string"
+        },
+        "target": {
+            "description": "Name of point in frames acting as target",
+            "type": "string"
+        },
+        "axes": {
+            "description": "Type of local orbital axes, one of the options in AxesSelection in godot/core/astro/Math.",
+            "type": "string"
+        }
+    }
+}

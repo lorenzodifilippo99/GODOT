@@ -1,0 +1,103 @@
+ephemeris:
+  - name: de432
+    files:
+      - data/ephemeris/jpl/de432s.bsp
+  - name: gm431
+    files:
+      - data/ephemeris/jpl/gm_de431.tpc
+
+stations:
+  - name: default
+    file: data/database/GroundStationsDatabase.json
+frames:
+  - name: ephem1
+    type: Ephem
+    config:
+      source: de432
+  - name: ITRF
+    type: AxesOrient
+    config:
+      model: IERS2000
+      nutation: data/orient/nutation2000A.ipf
+      erp: ''
+  - name: Mars
+    type: AxesOrient
+    config:
+      model: MarsIAU2009
+  - name: stations1
+    type: Stations
+    config:
+      source: default
+      points: false
+  - name: stations2
+    type: Stations
+    config:
+      source: default
+      axes: false
+constants:
+  ephemeris:
+
+    - source: gm431
+bodies:
+  - name: Earth
+    point: Earth
+    gravity:
+      - EarthGrav
+    gm: EarthGrav
+  - name: Sun
+    point: Sun
+  - name: Moon
+    point: Moon
+
+gravity:
+  - name: solarSystem
+    bodies:
+      - Earth
+      - Moon
+      - Sun
+
+dynamics:
+  - name: solarSystemGravity
+    type: SystemGravity
+    config:
+      model: solarSystem
+
+  - name: srp
+    type: SimpleSRP
+    config:
+      mass: GeoSat_mass
+      area: GeoSat_srp_area
+      cr: GeoSat_srp_cr
+      occulters:
+        - Earth
+        - Moon
+
+  - name: solarSystem
+    type: Combined
+    config:
+      - solarSystemGravity
+      - srp
+
+spacecraft:
+  - name: GeoSat
+    mass: 1200 kg
+    srp:
+      area: 10 m^2
+      cr: 1.7
+    thrusters:
+      - name: main
+        thrust: 100 N
+        isp: 320 s
+version: '3.0'
+spacetime:
+  system: BCRS
+  ephemeris: de432
+sphericalHarmonics:
+  - name: EarthGrav
+    type: File
+    config:
+      point: Earth
+      degree: 16
+      order: 16
+      axes: ITRF
+      file: data/gravity/earth/eigen05c_napeos_80_sha.tab

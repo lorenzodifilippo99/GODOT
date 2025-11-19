@@ -1,0 +1,24 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Universe/fluids/gas_pressure",
+    "description": "Configuration for gas pressure evaluable in fluids plugin",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "gas", "mass", "volume", "temperature"
+    ],
+    "properties": {
+        "gas": {
+            "description": "Gas model to use"
+        },
+        "mass": {
+            "description": "Mass time evaluable [kg]"
+        },
+        "volume": {
+            "description": "Volume time evaluable [m^3]"
+        },
+        "temperature": {
+            "description": "Temperature time evaluable [K]"
+        }
+    }
+}

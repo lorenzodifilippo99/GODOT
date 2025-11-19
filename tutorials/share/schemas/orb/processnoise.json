@@ -1,0 +1,86 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "processnoise",
+    "description": "Process noise equation generator configuration",
+    "type": "array",
+    "uniqueItems": true,
+    "items": {
+        "description": "Configuration for a single process noise equation",
+        "type": "object",
+        "required": [
+            "name",
+            "sig"
+        ],
+        "additionalProperties": false,
+        "properties": {
+            "name": {
+                "description": "Name of the parameter for which the process noise equation is defined. Must be a parameter in the universe process noise parameters book.",
+                "type": "string"
+            },
+            "sig": {
+                "description": "A-priori default sigma for the process noise parameter (can be overwritten by 'updates'). Can be dimensionless or with units, but it must match the units of the parameter definition in the universe. The value is converted internally to SI units.",
+                "type": "string"
+            },
+            "tau": {
+                "description": "Time correlation default constant for the time batches of the ECRV parameter (can be overwritten by 'updates'). If this is negative, the time batches are not correlated.",
+                "type": "string",
+                "default": "-1.0 s"
+            },
+            "bias": {
+                "description": "Configuration of the bias of the PN parameter.",
+                "type": "object",
+                "required": [
+                    "value",
+                    "sigma"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                    "value": {
+                        "description": "A-priori value of the of the PN parameter overall bias. Can be dimensionless or with units, but it must match the units of the parameter definition in the universe",
+                        "type": "string"
+                    },
+                    "sigma": {
+                        "description": "A-priori sigma of the of the PN parameter overall bias. Can be dimensionless or with units, but it must match the units of the parameter definition in the universe",
+                        "type": "string"
+                    }
+                }
+            },
+            "updates": {
+                "description": "Configuration of the updates (time batches) of the PN parameter.",
+                "type": "array",
+                "uniqueItems": true,
+                "items": {
+                    "oneOf": [
+                        {
+                            "description": "Time batch expression, must be a string with the format: 'epoch | tau | sig' where 'epoch' is the start epoch of the time batch, 'tau' and 'sig' are the time correlation constant and sigma for that batch.",
+                            "type": "string"
+                        },
+                        {
+                            "type": "object",
+                            "required": [
+                                "epoch",
+                                "tau",
+                                "sig"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                                "epoch": {
+                                    "description": "Start epoch of the time batch.",
+                                    "type": "string"
+                                },
+                                "tau": {
+                                    "description": "Time correlation constant for the batch.",
+                                    "type": "string"
+                                },
+                                "sig": {
+                                    "description": "Sigma for the batch.",
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Universe/fluids/ideal",
+    "description": "Configuration for ideal gas in fluids plugin",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "molar_mass"
+    ],
+    "properties": {
+        "molar_mass": {
+            "description": "Molar mass [kg/mol]",
+            "type": "number"
+        }
+    }
+}

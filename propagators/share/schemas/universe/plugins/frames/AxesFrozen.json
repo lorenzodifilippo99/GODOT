@@ -1,0 +1,30 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Universe/Frames/AxesFrozen",
+    "description": "Configuration for AxesFrozen axes in frames plugin (i.e. freezing rotation from parent to reference at epoch + optional delta)",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+        "epoch",
+        "reference"
+    ],
+    "properties": {
+        "epoch": {
+            "description": "Epoch at which rotation is frozen",
+            "$ref": "../../../definitions.json#/definitions/epoch"
+        },
+        "reference": {
+            "description": "Name of axes to which rotation is frozen",
+            "type": "string"
+        },
+        "parent": {
+            "description": "Name of axes from which rotation is frozen",
+            "default": "ICRF",
+            "type": "string"
+        },
+        "delta": {
+            "description": "(optionally parameterized) time correction to be applied to epoch",
+            "$ref": "../../../definitions.json#/definitions/scalar"
+        }
+    }
+}

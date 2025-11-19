@@ -1,0 +1,26 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Universe/VectorEvaluables/Dynamics",
+    "description": "Dynamic model acceleration vector",
+    "type": "object",
+    "required": [
+        "model"
+    ],
+    "additionalProperties": false,
+    "properties": {
+        "model": {
+            "description": "Model name from dynamic plugin book",
+            "type": "string"
+        },
+        "axes": {
+            "description": "Axes to project onto",
+            "type": "string",
+            "default": "ICRF"
+        },
+        "projectionPartials": {
+            "description": "Compute partial derivatives of rotation matrix from dynamic model axes to projection axes.",
+            "type": "boolean",
+            "default": false
+        }
+    }
+}

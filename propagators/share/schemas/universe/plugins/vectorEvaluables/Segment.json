@@ -1,0 +1,26 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Universe/VectorEvaluables/Segment",
+    "description": "Select a segment of a vector time evaluable",
+    "type": "object",
+    "required": [
+        "input",
+        "start",
+        "length"
+    ],
+    "additionalProperties": false,
+    "properties": {
+        "input": {
+            "type": "string",
+            "description": "name of the input vector evaluable"
+        },
+        "start": {
+            "type": "integer",
+            "description": "start index (zero to start with first element of input vector)"
+        },
+        "length": {
+            "type": "integer",
+            "description": "output vector length"
+        }
+    }
+}

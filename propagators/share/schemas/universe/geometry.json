@@ -1,0 +1,31 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Geometry plugin",
+    "description": "Geometry Function definitions",
+    "type": "array",
+    "uniqueItems": true,
+    "items": {
+        "description": "definition",
+        "type": "object",
+        "required": [
+            "name",
+            "type",
+            "config"
+        ],
+        "additionalProperties": false,
+        "properties": {
+            "name": {
+                "description": "Name of the model",
+                "type": "string"
+            },
+            "type": {
+                "description": "Type of the model",
+                "type": "string"
+            },
+            "config": {
+                "description": "Configuration of the model",
+                "type": "object"
+            }
+        }
+    }
+}

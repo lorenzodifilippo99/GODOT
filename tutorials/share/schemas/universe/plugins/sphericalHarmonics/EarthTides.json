@@ -1,0 +1,44 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Universe/sphericalHarmonics/EarthTides",
+    "description": "Configuration for Earth tides model",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+        "base"
+    ],
+    "properties": {
+        "solidTides": {
+            "description": "File with solid tides parameters (if not given, solid tides are ignored)",
+            "type": "string"
+        },
+        "oceanTides": {
+            "description": "File with ocean tides parameters (if not given, ocean tides are ignored)",
+            "type": "string"
+        },        
+        "base": {
+            "description": "Spherical harmonics model on top of which the Earth tides are to be applied",
+            "type": "string"
+        },
+        "range": {
+            "description": "Optional max distance above which spherical harmonics are not used (if not given, range from base is used)",
+            "$ref": "../../../definitions.json#/definitions/scalar"
+        },
+        "order": {
+            "description": "Optional max order (otherwise order from base is used)",
+            "type": "integer"
+        },
+        "degree": {
+            "description": "Optional max degree (otherwise degree from base is used)",
+            "type": "integer"
+        },
+        "rorder": {
+            "description": "Optional max indirect order (otherwise zero)",
+            "type": "integer"
+        },
+        "rdegree": {
+            "description": "Optional max indirect degree (otherwise zero)",
+            "type": "integer"
+        }
+    }
+}

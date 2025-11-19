@@ -1,0 +1,26 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Universe/Frames/DirVector",
+    "description": "Configuration for DirVector directions in frames plugin",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+        "axes",
+        "vector"
+    ],
+    "properties": {
+        "axes": {
+            "description": "Name of the axes in frames in which the direction vector is given",
+            "type": "string"
+        },
+        "vector": {
+            "description": "Time evaluable direction vector in axes frame (three vector components). Time derivatives are assumed to be negligible!",
+            "$ref": "../../../definitions.json#/definitions/vector3"
+        },
+        "epsilon": {
+            "description": "Delta in seconds to compute time derivatives (positive). If negative or zero, derivatives are assumed to be negligible.",
+            "default": -1.0,
+            "type": "number"
+        }
+    }
+}

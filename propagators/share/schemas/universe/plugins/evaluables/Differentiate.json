@@ -1,0 +1,30 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Universe/Evaluables/Differentiate",
+    "description": "Creates an evaluable from Central Difference of another evaluable. Discontinuities are not properly dealt with",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+        "input",
+        "eps"
+    ],
+    "properties": {
+        "input": {
+            "type": "string",
+            "description": "name of the evaluable to differentiate"
+        },
+        "eps": {
+            "description": "delta time to compute finite differences",
+            "$ref": "../../../definitions.json#/definitions/scalar"
+        },
+        "range": {
+            "description": "epoch range restriction (optional)",
+            "type": "array",
+            "items": {
+                "$ref": "../../../definitions.json#/definitions/epoch"
+            },
+            "minItems": 2,
+            "maxItems": 2
+        }
+    }
+}

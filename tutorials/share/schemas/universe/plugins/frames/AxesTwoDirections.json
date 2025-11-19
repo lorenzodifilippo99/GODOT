@@ -1,0 +1,36 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Universe/Frames/AxesTwoDirections",
+    "description": "Configuration for AxesTwoDirections axes in frames plugin (i.e. rotation from a given parent axes and axes defined by dir1 and dir2)",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+        "dir1",
+        "dir2"
+    ],
+    "properties": {
+        "dir1": {
+            "description": "Name of direction 1 in frames",
+            "type": "string"
+        },
+        "dir2": {
+            "description": "Name of direction 2 in frames",
+            "type": "string"
+        },
+        "label1": {
+            "description": "Axis label for first direction",
+            "default": "+X",
+            "$ref": "../../../definitions.json#/definitions/Axis"
+        },
+        "label2": {
+            "description": "Axis label for projection of second direction onto plane normal to first direction",
+            "default": "+Y",
+            "$ref": "../../../definitions.json#/definitions/Axis"
+        },
+        "axes": {
+            "description": "Optional parent axes. If not provided, the base axis of dir1 is used if existing, otherwise the one of dir2 (if neither exists, an exception is thrown)",
+            "type": "string",
+            "default": ""
+        }
+    }
+}

@@ -1,0 +1,45 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Universe/Geometry/StateElement",
+    "description": "Function returning a state element between a center point and another point in a given axes. Any of the state types available in GODOT can be used here. See the configuration properties for details",
+    "type": "object",
+    "required": [
+        "center",
+        "point",
+        "axes",
+        "stateType",
+        "mu",
+        "index"
+    ],
+    "additionalProperties": false,
+    "properties": {
+        "center": {
+            "description": "First point, a point in the frames system",
+            "type": "string"
+        },
+        "point": {
+            "description": "Second point, a point in the frames system",
+            "type": "string"
+        },
+        "axes": {
+            "description": "Third point, a point in the frames system",
+            "type": "string"
+        },
+        "stateType": {
+            "description": "Name of the state type to be computed, any of the state types available in godot::astro::StateType ( in Python, type help(godot.core.astro.StateType) for details )",
+            "type": "string"
+        },
+        "mu": {
+            "description": "Gravitational parameter with units (e.g. km^3/s^2) for the computation of the state",
+            "type": "string"
+        },
+        "index": {
+            "description": "Element in the state vector to be computed, from 0 to 5",
+            "type": "integer"
+        },
+        "wrapPiPi": {
+            "description": "Flag to indicate whether to wrap the output from -pi to pi (default false)",
+            "type": "boolean"
+        }
+    }
+}

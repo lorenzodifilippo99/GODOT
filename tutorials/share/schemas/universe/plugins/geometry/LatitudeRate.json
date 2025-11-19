@@ -1,0 +1,26 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Universe/Geometry/LatitudeRate",
+    "description": "Latitude rate [rad/sec] of a target point from an observer point, measured in a user supplied axes",
+    "type": "object",
+    "required": [
+        "observer",
+        "target",
+        "axes"
+    ],
+    "additionalProperties": false,
+    "properties": {
+        "target": {
+            "description": "Target of the observation, a point in the frames system",
+            "type": "string"
+        },
+        "observer": {
+            "description": "Observer of the observation, a point in the frames system",
+            "type": "string"
+        },
+        "axes": {
+            "description": "Axes in which the observation is made, an Axes in the frames system",
+            "type": "string"
+        }
+    }
+}

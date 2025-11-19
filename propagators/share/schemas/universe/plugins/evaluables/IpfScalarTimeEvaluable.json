@@ -1,0 +1,63 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Universe/Evaluables/IpfScalarTimeEvaluable",
+    "description": "Configuration for IpfScalarTimeEvaluable in evaluables plugin",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+        "file",
+        "timescale",
+        "map"
+    ],
+    "properties": {
+        "file": {
+            "description": "IPF file path",
+            "type": "string"
+        },
+        "timescale": {
+            "description": "Timescale of the IPF key (julian day type is instead assumed to be MJD2000)",
+            "type": "string"
+        },
+        "eventTimescale": {
+            "description": "Timescale of event storage (defaults to universe timescale)",
+            "type": "string"
+        },
+        "interpOrder": {
+            "description": "Optional interpolation order for the IPF. If not given, hard coded InterpolationDefaults are used.",
+            "type": "integer"
+        },
+        "map": {
+            "description": "map of index, derivative to evaluable names",
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+                "description": "definition",
+                "type": "object",
+                "required": [
+                    "index",
+                    "name"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                    "name": {
+                        "description": "Name of the evaluable",
+                        "type": "string"
+                    },
+                    "index": {
+                        "description": "index of IPF vector components (starts at 0)",
+                        "type": "integer"
+                    },
+                    "blockEvents": {
+                        "description": "Optional flag to include IPF blocks as dynamic events or not",
+                        "type": "boolean",
+                        "default": true
+                    },
+                    "derivOrder": {
+                        "description": "derivative order (defaults to 0 for no derivative) derivatives are rescaled to be in IPF state units per second (first derivative), per second squared (second derivative)...",
+                        "type": "integer"
+                    }
+                }
+            }
+        }
+    }
+}

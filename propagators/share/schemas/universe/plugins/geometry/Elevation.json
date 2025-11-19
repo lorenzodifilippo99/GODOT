@@ -1,0 +1,35 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Universe/Geometry/Elevation",
+    "description": "Elevation [rad] of a frame point from a ground station point/axes observer (by default the same name is used for the observation point and axes in frame system, e.g. ground station point)",
+    "type": "object",
+    "required": [
+        "observer",
+        "target"
+    ],
+    "additionalProperties": false,
+    "properties": {
+        "target": {
+            "description": "Target, a point in the frames system",
+            "type": "string"
+        },
+        "observer": {
+            "description": "Observer, the name both a point and an axes in the frames system",
+            "type": "string"
+        },
+        "axes": {
+            "description": "Axes in which the observation is made, an Axes in the frames system (default, same as observer)",
+            "type": "string"
+        },
+        "mask": {
+            "description": "name of station mask",
+            "type": "string",
+            "default": ""
+        },
+        "stations": {
+            "description": "Stations database to be used from stations plugin",
+            "type": "string",
+            "default": ""
+        }
+    }
+}

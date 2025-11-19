@@ -1,0 +1,51 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Universe/shapes/acc_flatplate",
+    "description": "Configuration for acc_shadowing vector time evaluable in shapes plugin",
+    "type": "object",
+    "required": [
+        "axes",
+        "point",
+        "mass",
+        "composite",
+        "cell_size"
+    ],
+    "properties": {
+        "axes": {
+            "description": "List of axes used in algorithm",
+            "type": "object",
+            "required": [ "computation", "intermediate", "result" ],
+            "properties" : {
+                "computation" : {
+                    "description": "Computation axes used for algorithm (must have Sun on +Z)!",
+                    "type": "string"
+                },
+                "intermediate" : {
+                    "description": "Intermediate axes used for algorithm",
+                    "type": "string"
+                },
+                "result" : {
+                    "description": "Result frame for SRP acceleration",
+                    "type": "string"
+                }
+            }
+
+        },
+        "point": {
+            "description": "Reference point used for algorithm.",
+            "type": "string"
+        },
+        "mass": {
+            "description": "Scalar time evaluable for mass",
+            "type": "string"
+        },
+        "composite": {
+            "description": "Name of composite to be used for SRP acceleration",
+            "type": "string"
+        },
+        "cell_size": {
+            "description": "Cell size used for Z-buffer algorithm",
+            "type": "string"
+        }
+    }
+}

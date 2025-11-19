@@ -1,0 +1,24 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "direction",
+    "description": "Direction equation generator configuration",
+    "type": "object",
+    "required": [
+        "file"
+    ],
+    "additionalProperties": false,
+    "properties": {
+        "file": {
+            "description": "Path to a JSON file containing an array of direction observations. Each element of the array must contain 'epoch', 'camera', 'axes' and 'vectors' for a single observations but potentially multiple targets. 'vectors' is then an array of directions for a given observation epoch, where each element has a 'target', 'noise', 'right ascention' and 'declination'.",
+            "type": "string"
+        },
+        "from": {
+            "description": "Start epoch for the time interval for which the observations in 'file' are loaded.",
+            "type": "string"
+        },
+        "to": {
+            "description": "End epoch for the time interval for which the observations in 'file' are loaded.",
+            "type": "string"
+        }
+    }
+}

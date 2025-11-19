@@ -1,0 +1,36 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Universe/Geometry/GeodeticAltitude",
+    "description": "Geodetic altitude [km] of a target point above a reference ellipsoid centered on an observer point in the frames system",
+    "type": "object",
+    "required": [
+        "observer",
+        "target",
+        "axes",
+        "radius",
+        "flattening"
+    ],
+    "additionalProperties": false,
+    "properties": {
+        "target": {
+            "description": "Target, a point in the frames system",
+            "type": "string"
+        },
+        "observer": {
+            "description": "Observer, a point in the frames system",
+            "type": "string"
+        },
+        "axes": {
+            "description": "Axes in which the observation is made, an Axes in the frames system",
+            "type": "string"
+        },
+        "radius": {
+            "description": "Equatorial radius of the observer body (with length units)",
+            "type": "string"
+        },
+        "flattening": {
+            "description": "Flattening of the observer body",
+            "type": "number"
+        }
+    }
+}

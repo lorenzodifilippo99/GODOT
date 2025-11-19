@@ -1,0 +1,26 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Universe/Geometry/ThreePointAngle",
+    "description": "Three point angle function, computes the angle [rad] at a vertex point subtended by two other points",
+    "type": "object",
+    "required": [
+        "point1",
+        "point2",
+        "point3"
+    ],
+    "additionalProperties": false,
+    "properties": {
+        "point1": {
+            "description": "A point in the frames system, one of the legs of the angle",
+            "type": "string"
+        },
+        "point2": {
+            "description": "The vertex, a point in the frames system",
+            "type": "string"
+        },
+        "point3": {
+            "description": "A point in the frames system, one of the legs of the angle",
+            "type": "string"
+        }
+    }
+}

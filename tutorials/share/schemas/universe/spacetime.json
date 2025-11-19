@@ -1,0 +1,30 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Space-time plugin",
+    "description": "Configuration of basic relativistic models (TDB-TT, Lorentz)",
+    "type": "object",
+    "required": [
+        "system"
+    ],
+    "additionalProperties": false,
+    "properties": {
+        "system": {
+            "description": "Default relativistic system name",
+            "type": "string",
+            "enum": ["BCRS", "GCRS"]
+        },
+        "ephem": {
+            "description": "Ephemeris to use for TDB-TT and Lorentz tranformation",
+            "type": "string"
+        },
+        "gcrsPrefix": {
+            "description": "Prefix for axes/point names in GCRS system (only if default system is BCRS)",
+            "default": "GCRS"
+        },
+        "lorentzBodies": {
+            "description": "Earth external bodies to use for Lorentz transformation.",
+            "$ref": "../definitions.json#/definitions/stringArray",
+            "default": [ "Sun" ]
+        }
+    }
+}

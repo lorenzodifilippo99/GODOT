@@ -1,0 +1,21 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Nrlmsise00Wind",
+    "description": "NRLMSISE-00 wind model in atmosphericFeatures plugin",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+        "file",
+        "body"
+    ],
+    "properties": {
+        "file": {
+            "description": "Path to the SolarIndices file",
+            "type": "string"
+        },
+        "body": {
+            "description": "Body for wind model (Earth)",
+            "type": "string"
+        }
+    }
+}

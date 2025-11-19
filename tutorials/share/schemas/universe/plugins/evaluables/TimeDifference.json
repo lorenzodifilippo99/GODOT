@@ -1,0 +1,16 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Universe/Evaluables/TimeDifference",
+    "description": "Returns the difference between evaluation time and fixed epoch in seconds",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+        "epoch"
+    ],
+    "properties": {
+        "epoch": {
+            "description": "Epoch",
+            "$ref": "../../../definitions.json#/definitions/epoch"
+        }
+    }
+}

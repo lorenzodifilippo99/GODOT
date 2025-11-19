@@ -1,0 +1,50 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Universe/Frames/AxesOrient",
+    "description": "Configuration for AxesOrient axes in frames plugin",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "model"
+    ],
+    "properties": {
+        "model": {
+            "description": "Orientation model name in core/orient",
+            "type": "string"
+        },
+        "nutation": {
+            "description": "Optional nutation IPF file path (only for IERS2000 models)",
+            "type": "string"
+        },
+        "erp": {
+            "description": "Optional Earth Rotation Parameters IPF file path (only for IERS2000 models)",
+            "type": "string"
+        },
+        "h": {
+            "description": "Optional Grid Spacing to compute numerical derivatives (only for IAUOrient models)",
+            "type": "string"
+        },
+        "epoch": {
+            "description": "Optional epoch for frozen frames (only for IERS2000Frozen models)",
+            "type": "string"
+        },
+        "preCorrection": {
+            "description": "Pre-transformation orientation correction vector (three angles in radians)",
+            "$ref": "../../../definitions.json#/definitions/vector3"
+        },
+        "postCorrection": {
+            "description": "Post-transformation orientation correction vector (three angles in radians)",
+            "$ref": "../../../definitions.json#/definitions/vector3"
+        },
+        "startEpoch": {
+            "description": "Start epoch",
+            "$ref": "../../../definitions.json#/definitions/epoch",
+            "default": "tempo::BeginOfTime"
+        },
+        "endEpoch": {
+            "description": "End epoch",
+            "$ref": "../../../definitions.json#/definitions/epoch",
+            "default": "tempo::EndOfTime"
+        }
+    }
+}

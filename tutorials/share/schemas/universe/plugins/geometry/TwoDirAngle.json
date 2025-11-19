@@ -1,0 +1,21 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Universe/Geometry/TwoDirAngle",
+    "description": "The angle [rad] between two directions in the frames system",
+    "type": "object",
+    "required": [
+        "dir1",
+        "dir2"
+    ],
+    "additionalProperties": false,
+    "properties": {
+        "dir1": {
+            "description": "First direction, a direction in the frames system",
+            "type": "string"
+        },
+        "dir2": {
+            "description": "Second direction, a direction in the frames system",
+            "type": "string"
+        }
+    }
+}

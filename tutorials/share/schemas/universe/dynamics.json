@@ -1,0 +1,30 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Dynamics plugin",
+    "description": "Dynamic models definition",
+    "type": "array",
+    "uniqueItems": true,
+    "items": {
+        "description": "One dynamic model definition",
+        "type": "object",
+        "required": [
+            "name",
+            "type",
+            "config"
+        ],
+        "additionalProperties": false,
+        "properties": {
+            "name": {
+                "description": "Name of the dynamic model",
+                "type": "string"
+            },
+            "type": {
+                "description": "Type of the dynamic model",
+                "type": "string"
+            },
+            "config": {
+                "description": "Configuration of the dynamic model"
+            }
+        }
+    }
+}

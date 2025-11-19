@@ -1,0 +1,61 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Universe/Frames/PointOrbit",
+    "description": "Configuration for PointOrbit points in frames plugin based on Keplerian elements defined around a central point using specific axes",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+        "center",
+        "axes",
+        "epoch",
+        "sma",
+        "ecc",
+        "inc",
+        "ran",
+        "aop",
+        "tan",
+        "gm"
+    ],
+    "properties": {
+        "center": {
+            "description": "Center point around which the orbit is defined",
+            "type": "string"
+        },
+        "axes": {
+            "description": "Axes of the orbit",
+            "type": "string"
+        },
+        "epoch": {
+            "description": "Reference epoch where the initial true anomaly is defined",
+            "$ref": "../../../definitions.json#/definitions/epoch"
+        },
+        "sma": {
+            "description": "Semi-major of the orbit",
+            "type": "string"
+        },
+        "ecc": {
+            "description": "Eccentricity of the orbit",
+            "type": "number"
+        },
+        "inc": {
+            "description": "Inclination of the orbit",
+            "type": "string"
+        },
+        "ran": {
+            "description": "Right ascension of the ascending node of the orbit",
+            "type": "string"
+        },
+        "aop": {
+            "description": "Argument of periapsis of the orbit",
+            "type": "string"
+        },
+        "tan": {
+            "description": "Initial true anomaly defined at the reference epoch",
+            "type": "string"
+        },
+        "gm": {
+            "description": "Gravitational parameter of the central body",
+            "type": "string"
+        }
+    }
+}

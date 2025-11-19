@@ -1,0 +1,26 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Stations plugin",
+    "description": "Station database setup",
+    "type": "array",
+    "uniqueItems": true,
+    "items": {
+        "description": "One station database object",
+        "type": "object",
+        "required": [
+            "name",
+            "file"
+        ],
+        "additionalProperties": false,
+        "properties": {
+            "name": {
+                "description": "Station database name",
+                "type": "string"
+            },
+            "file": {
+                "description": "Database file to load",
+                "type": "string"
+            }
+        }
+    }
+}

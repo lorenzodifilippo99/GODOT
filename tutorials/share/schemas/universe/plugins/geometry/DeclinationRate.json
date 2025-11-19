@@ -1,0 +1,21 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Universe/Geometry/DeclinationRate",
+    "description": "Declination rate [rad/sec] of a frame point from a point observer (axes of observation is ICRF).",
+    "type": "object",
+    "required": [
+        "observer",
+        "target"
+    ],
+    "additionalProperties": false,
+    "properties": {
+        "target": {
+            "description": "Target of the observation, a point in the frames system",
+            "type": "string"
+        },
+        "observer": {
+            "description": "Observer of the observation, a point in the frames system",
+            "type": "string"
+        }
+    }
+}

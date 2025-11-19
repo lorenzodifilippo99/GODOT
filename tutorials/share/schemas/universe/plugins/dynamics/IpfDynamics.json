@@ -1,0 +1,39 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Universe/Dynamics/IpfDynamics",
+    "description": "Configuration for IpfDynamics in dynamics plugin",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+        "file"
+    ],
+    "properties": {
+        "point": {
+            "$ref": "definitions.json#/definitions/point"
+        },
+        "axes": {
+            "$ref": "definitions.json#/definitions/axes"
+        },
+        "inputAxes": {
+            "$ref": "definitions.json#/definitions/inputAxes"
+        },
+        "file": {
+            "$ref": "definitions.json#/definitions/file"
+        },
+        "interpOrder": {
+            "$ref": "definitions.json#/definitions/interpOrder"
+        },
+        "blockEvents": {
+            "$ref": "definitions.json#/definitions/blockEvents"
+        },
+        "calibrationAxes": {
+            "$ref": "definitions.json#/definitions/calibrationAxes"
+        },
+        "scaleWithMainComponent": {
+            "$ref": "definitions.json#/definitions/scaleWithMainComponent"
+        },
+        "calibration": {
+            "$ref": "definitions.json#/definitions/calibration"
+        }
+    }
+}

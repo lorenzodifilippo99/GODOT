@@ -1,0 +1,104 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Atmosphere plugin",
+    "description": "Atmosphere model definitions",
+    "type": "array",
+    "uniqueItems": true,
+    "items": {
+        "description": "One atmosphere model definition",
+        "type": "object",
+        "required": [
+            "name",
+            "type",
+            "config"
+        ],
+        "additionalProperties": true,
+        "properties": {
+            "name": {
+                "description": "Name of the atmosphere model",
+                "type": "string"
+            },
+            "type": {
+                "description": "Atmosphere model to be used",
+                "examples": [
+                    "nrlmsise00",
+                    "exponential",
+                    "patchedExponential",
+                    "averaged"
+                ],
+                "type": "string"
+            },
+            "config": {
+                "description": "Configuration for atmosphere model construction",
+                "type": "object",
+                "required": [
+                    "point",
+                    "axes"
+                ],
+                "uniqueItems": true,
+                "items": {
+                    "additionalProperties": false,
+                    "point": {
+                        "description": "Name of the point that determines the atmosphere center",
+                        "type": "string"
+                    },
+                    "axes": {
+                        "description": "Name of the axes that determines the atmosphere orientation",
+                        "type": "string"
+                    },
+                    "file": {
+                        "description": "File to initialise atmospheric model with (e.g. solar flux)",
+                        "type": "string"
+                    },
+                    "radius": {
+                        "description": "Equatorial radius of the body required for certain models",
+                        "type": "string",
+                        "default": "1.0 km",
+                        "examples": [
+                            "6378.14 km",
+                            "3396.2 km"
+                        ]
+                    },
+                    "flattening": {
+                        "description": "Flattening of the body required for certain models",
+                        "type": "number",
+                        "default": "0.0",
+                        "examples": [
+                            "0.003352811"
+                        ]
+                    },
+                    "activity": {
+                        "description": "Solar activity flag required for averaged models",
+                        "type": "string",
+                        "enum": [
+                            "low",
+                            "medium",
+                            "high"
+                        ],
+                        "default": "medium"
+                    },
+                    "wind": {
+                        "description": "Whether to consider wind computation",
+                        "type": "boolean",
+                        "default": "true"
+                    },
+                    "height": {
+                        "description": "Reference height for exponential model",
+                        "type": "string",
+                        "default": "100.0 km"
+                    },
+                    "density": {
+                        "description": "Reference density for exponential model",
+                        "type": "string",
+                        "default": "1.0 kg/km^3"
+                    },
+                    "scale": {
+                        "description": "Scale height for exponential model",
+                        "type": "string",
+                        "default": "10.0 km"
+                    }
+                }
+            }
+        }
+    }
+}

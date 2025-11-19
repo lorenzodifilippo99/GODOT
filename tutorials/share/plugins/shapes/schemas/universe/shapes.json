@@ -1,0 +1,155 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Shapes plugin",
+    "description": "Shape model definitions",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "composites": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+                "description": "Composite definition",
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                    "name",
+                    "parts"
+                ],
+                "properties": {
+                    "name": {
+                        "description": "Name of the composite model",
+                        "type": "string"
+                    },
+                    "parts": {
+                        "description": "List of parts of the composite.",
+                        "type": "array"
+                    }
+                }
+            }
+        },
+        "parts": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+                "description": "Part definitions",
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                    "name",
+                    "type",
+                    "config"
+                ],
+                "properties": {
+                    "name": {
+                        "description": "Name of the part model",
+                        "type": "string"
+                    },
+                    "type": {
+                        "description": "Type of the part",
+                        "type": "string"
+                    },
+                    "config": {
+                        "description": "Part configuration",
+                        "type": "object"
+                    }
+                }
+            }
+        },
+        "evaluables": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+                "description": "Evaluable definitions",
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                    "name",
+                    "type",
+                    "config"
+                ],
+                "properties": {
+                    "name": {
+                        "description": "Name of the evaluable",
+                        "type": "string"
+                    },
+                    "type": {
+                        "description": "Type of the evaluable",
+                        "type": "string"
+                    },
+                    "config": {
+                        "description": "Evaluable configuration",
+                        "type": "object"
+                    }
+                }
+            }
+        },
+        "colours": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+                "description": "Colour definition",
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                    "name",
+                    "r",
+                    "g",
+                    "b"
+                ],
+                "properties": {
+                    "name": {
+                        "description": "Name of the colour model",
+                        "type": "string"
+                    },
+                    "r": {
+                        "description": "Red",
+                        "type": "number",
+                        "minimal": 0,
+                        "maximal": 1
+                    },
+                    "g": {
+                        "description": "Green",
+                        "type": "number",
+                        "minimal": 0,
+                        "maximal": 1
+                    },
+                    "b": {
+                        "description": "Blue",
+                        "type": "number",
+                        "minimal": 0,
+                        "maximal": 1
+                    }
+                }
+            }
+        },
+        "srp_properties": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+                "description": "SRP properties definition",
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                    "name",
+                    "absorptance",
+                    "specular_reflectance"
+                ],
+                "properties": {
+                    "name": {
+                        "description": "Name of the SRP properties",
+                        "type": "string"
+                    },
+                    "absorptance": {
+                        "description": "Name of the absorptance coefficient time evaluable",
+                        "type": "string"
+                    },
+                    "specular_reflectance": {
+                        "description": "Name of the specular reflectance coefficient time evaluable",
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    }
+}

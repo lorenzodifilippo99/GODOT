@@ -1,0 +1,24 @@
+from godot import cosmos
+from godot.model import prop
+from godot.model import common
+from godot.model import interface
+from godot.model import geometry
+from godot.core.autodif import bridge as br
+from godot.core import autodif as ad
+from godot.core import tempo, util, constants, integ
+import numpy as np
+
+
+# avoid verbose output
+util.suppressLogger()
+
+uni_config = cosmos.util.load_yaml('universe.yml')
+uni = cosmos.Universe(uni_config)
+
+# Initialize the chaser
+chaser = 'chaser'
+launch_epoch = tempo.Epoch("2027-01-01T00:00:00.000 TDB")
+
+
+# Initialize the target
+target = 'target'

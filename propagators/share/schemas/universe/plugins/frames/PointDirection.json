@@ -1,0 +1,26 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Universe/Frames/PointDirection",
+    "description": "Configuration for PointDirection point in frames plugin",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+        "origin",
+        "direction"
+    ],
+    "properties": {
+        "origin": {
+            "description": "Origin point",
+            "type": "string"
+        },
+        "axes": {
+            "description": "Reference axes",
+            "type": "string",
+            "default": "ICRF"
+        },
+        "direction": {
+            "description": "Direction describing translation",
+            "type": "string"
+        }
+    }
+}

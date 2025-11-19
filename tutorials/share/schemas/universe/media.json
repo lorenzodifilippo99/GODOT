@@ -1,0 +1,54 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Media plugin",
+    "description": "Media setup",
+    "type": "object",
+    "required": [
+    ],
+    "additionalProperties": false,
+    "properties": {
+        "solmag": {
+            "description": "Solmag file to use for ionosphere correction (required for initial configuration but can be empty string to force not using it)",
+            "type": "string"
+        },
+        "stations": {
+            "description": "Station specific input",
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+                "description": "Input for one station",
+                "type": "object",
+                "required": [
+                    "name"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                    "name": {
+                        "description": "Name of the station",
+                        "type": "string"
+                    },
+                    "wetTropoZenithBias": {
+                        "$ref": "../definitions.json#/definitions/scalar",
+                        "description": "bias applied to wet tropospheric zenith correction, default=0, unit = kilometers"
+                    },
+                    "dryTropoZenithBias": {
+                        "$ref": "../definitions.json#/definitions/scalar",
+                        "description": "bias applied to dry tropospheric zenith correction, default=0, unit = kilometers"
+                    },
+                    "wetTropoScale": {
+                        "$ref": "../definitions.json#/definitions/scalar",
+                        "description": "scale factor applied to wet tropospheric correction, default=1.0"
+                    },
+                    "dryTropoScale": {
+                        "$ref": "../definitions.json#/definitions/scalar",
+                        "description": "scale factor applied to dry tropospheric correction, default=1.0"
+                    },
+                    "ionoScale": {
+                        "$ref": "../definitions.json#/definitions/scalar",
+                        "description": "scale applied to ionospheric correction, default=1.0"
+                    }
+                }
+            }
+        }
+    }
+}

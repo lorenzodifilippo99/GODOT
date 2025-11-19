@@ -1,0 +1,30 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Mappings plugin",
+    "description": "Various mapping definition to be used for associations",
+    "type": "array",
+    "uniqueItems": true,
+    "items": {
+        "description": "One mapping definition",
+        "type": "object",
+        "required": [
+            "name",
+            "data"
+        ],
+        "additionalProperties": false,
+        "properties": {
+            "name": {
+                "description": "Name of the mapping definition",
+                "type": "string"
+            },
+            "data": {
+                "description": "Mapping data entries",
+                "type": "object",
+                "additionalProperties": {
+                    "description": "Elementary mappings from string to string",
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Universe/fluids/nist",
+    "description": "Configuration for gas defined using NIST tables in fluids plugin",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "file"
+    ],
+    "properties": {
+        "file": {
+            "description": "Path of JSON file containing NIST table.",
+            "type": "string"
+        }
+    }
+}

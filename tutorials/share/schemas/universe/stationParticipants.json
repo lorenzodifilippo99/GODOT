@@ -1,0 +1,126 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Station participants plugin",
+    "description": "Station observation participants setup",
+    "definitions": {
+        "gs_tr": {
+            "description": "Ground Station transmitter or receiver setup",
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+                "description": "Input for one receiver or transmitter",
+                "type": "object",
+                "required": [
+                    "name",
+                    "bands"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                    "name": {
+                        "description": "Receiver or tranmitter name",
+                        "type": "string"
+                    },
+                    "bands": {
+                        "description": "Per band configuration",
+                        "type": "array",
+                        "uniqueItems": true,
+                        "items": {
+                            "description": "Input for one band",
+                            "type": "object",
+                            "required": [
+                                "band"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                                "band": {
+                                    "description": "band being configured",
+                                    "type": "string"
+                                },
+                                "clockBias": {
+                                    "description": "clock bias (default: 0)",
+                                    "$ref": "../definitions.json#/definitions/scalar"
+                                },
+                                "rangeBias": {
+                                    "description": "range bias (default: 0)",
+                                    "$ref": "../definitions.json#/definitions/scalar"
+                                },
+                                "dopplerBias": {
+                                    "description": "Doppler bias (default: 0)",
+                                    "$ref": "../definitions.json#/definitions/scalar"
+                                },
+                                "groupDelay": {
+                                    "description": "group delay (default: 0)",
+                                    "$ref": "../definitions.json#/definitions/scalar"
+                                },
+                                "phaseDelay": {
+                                    "description": "phase delay (default: 0)",
+                                    "$ref": "../definitions.json#/definitions/scalar"
+                                },
+                                "frequency": {
+                                    "description": "frequency (default: None)",
+                                    "$ref": "../definitions.json#/definitions/scalar"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "type": "object",
+    "required": [
+        "source",
+        "stations"
+    ],
+    "additionalProperties": false,
+    "properties": {
+        "source": {
+            "description": "Station database(s) to use as source of information",
+            "type": [
+                "string",
+                "array"
+            ]
+        },
+        "stations": {
+            "description": "Station specific input",
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+                "description": "Input for one station",
+                "type": "object",
+                "required": [
+                    "name"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                    "name": {
+                        "description": "Name of the station participant",
+                        "type": "string"
+                    },
+                    "mediaName": {
+                        "description": "Name of station in media plugin",
+                        "type": "string",
+                        "default": "station name"
+                    },
+                    "aliases": {
+                        "type": "array",
+                        "description": "aliases (optional, if absent use station database aliases)",
+                        "uniqueItems": true,
+                        "items": {
+                            "description": "alias",
+                            "type": "string"
+                        }
+                    },
+                    "transmitters": {
+                        "description": "Transmitter specific data",
+                        "$ref": "#/definitions/gs_tr"
+                    },
+                    "receivers": {
+                        "description": "Receiver specific data",
+                        "$ref": "#/definitions/gs_tr"
+                    }
+                }
+            }
+        }
+    }
+}

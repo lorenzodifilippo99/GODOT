@@ -1,0 +1,34 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Universe/Dynamics/SimpleDrag",
+    "description": "Configuration for SimpleDrag in dynamics plugin",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+        "atmosphere",
+        "area",
+        "cd"
+    ],
+    "properties": {
+        "point": {
+            "$ref": "definitions.json#/definitions/point"
+        },
+        "axes": {
+            "$ref": "definitions.json#/definitions/axes"
+        },
+        "area": {
+            "$ref": "definitions.json#/definitions/area"
+        },
+        "mass": {
+            "$ref": "definitions.json#/definitions/mass"
+        },
+        "cd": {
+            "description": "Reflectivity coefficient (optionally parameterized) for SRP acceleration computation",
+            "$ref": "../../../definitions.json#/definitions/scalar"
+        },
+        "atmosphere": {
+            "description": "Name of the atmosphere in the atmosphere plugin to be used",
+            "type": "string"
+        }
+    }
+}

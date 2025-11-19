@@ -1,0 +1,140 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Parameters plugin",
+    "description": "Parameters setup",
+    "type": "array",
+    "uniqueItems": true,
+    "items": {
+        "oneOf": [
+            {
+                "description": "Parameter",
+                "type": "object",
+                "required": [
+                    "name",
+                    "value",
+                    "type"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                    "type": {
+                        "const": "Parameter"
+                    },
+                    "name": {
+                        "description": "Parameter name",
+                        "type": "string"
+                    },
+                    "value": {
+                        "description": "Parameter value (with or without units)",
+                        "$ref": "../definitions.json#/definitions/scalar"
+                    },
+                    "unit": {
+                        "description": "Parameter unit (optional, units None if not given)",
+                        "type": "string"
+                    }
+                }
+            },
+            {
+                "description": "Process Noise Set",
+                "type": "object",
+                "required": [
+                    "name",
+                    "type",
+                    "config"
+                ],
+                "additionalProperties": true,
+                "properties": {
+                    "type": {
+                        "const": "ProcessNoiseSet"
+                    },
+                    "name": {
+                        "description": "Process Noise name",
+                        "type": "string"
+                    },
+                    "config": {
+                        "description": "Configuration of Process Noise set created from a file",
+                        "type": "object",
+                        "additionalProperties": false,
+                        "required": [
+                            "bias",
+                            "gridFile"
+                        ],
+                        "properties": {
+                            "bias": {
+                                "description": "bias of the process noise (this allows also defining the parameter unit, if any)",
+                                "type": "string"
+                            },
+                            "gridFile": {
+                                "description": "filepath to the grid file",
+                                "type": "string"
+                            },
+                            "column": {
+                                "description": "column number to use for process noise values",
+                                "type": "integer",
+                                "minimum": 0,
+                                "default": 0
+                            },
+                            "timeScale": {
+                                "description": "Target time scale the grid epochs are loaded into",
+                                "type": "string",
+                                "default": "TDB"
+                            }
+                        }
+                    }
+                }
+            },
+            {
+                "description": "Process Noise Set",
+                "type": "object",
+                "required": [
+                    "name",
+                    "type",
+                    "config"
+                ],
+                "additionalProperties": true,
+                "properties": {
+                    "type": {
+                        "const": "ProcessNoiseSet"
+                    },
+                    "name": {
+                        "description": "Process Noise name",
+                        "type": "string"
+                    },
+                    "config": {
+                        "description": "Configuration of Process Noise set created from start, end and step with all values zero",
+                        "type": "object",
+                        "additionalProperties": false,
+                        "required": [
+                            "start",
+                            "end",
+                            "step",
+                            "bias"
+                        ],
+                        "properties": {
+                            "start": {
+                                "description": "Start Epoch of the process noise grid",
+                                "type": "string"
+                            },
+                            "end": {
+                                "description": "End Epoch of the process noise grid",
+                                "type": "string"
+                            },
+                            "step": {
+                                "description": "Time step for the process noise grid",
+                                "type": "string"
+                            },
+                            "bias": {
+                                "description": "bias of the process noise (this allows also defining the parameter unit, if any)",
+                                "type": "string"
+                            },
+                            "timeScale": {
+                                "description": "Target time scale the grid epochs are loaded into",
+                                "type": "string",
+                                "default": "TDB"
+                            }
+                        }
+                    }
+                }
+            }
+        ]
+    }
+}

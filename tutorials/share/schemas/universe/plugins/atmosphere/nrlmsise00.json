@@ -1,0 +1,39 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Universe/Atmosphere/nrlmsise00",
+    "description": "Configuration for nrlmsis00 model in atmosphere plugin",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+        "file",
+        "point",
+        "axes"
+    ],
+    "properties": {
+        "file": {
+            "description": "Solmag IPF file path",
+            "type": "string"
+        },
+        "point": {
+            "description": "Center of the body to which the atmosphere is attached",
+            "type": "string"
+        },
+        "axes": {
+            "description": "Axes to which the atmosphere is attached",
+            "type": "string"
+        },
+        "radius": {
+            "description": "Optional radius to use for computing altitude",
+            "type": "string"
+        },
+        "flattening": {
+            "description": "Optional flattening to for computing altitude",
+            "type": "number"
+        },
+        "wind": {
+            "description": "Optional flag to use the Horizontal Wind Model (HWM93)",
+            "type": "boolean",
+            "default": true
+        }
+    }
+}

@@ -1,0 +1,46 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Universe/sphericalHarmonics/File",
+    "description": "Configuration for non-spherical gravity field",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+        "file",
+        "point",
+        "axes"
+    ],
+    "properties": {
+        "file": {
+            "description": "Spherical harmonics file in PDS SHA format",
+            "type": "string"
+        },
+        "point": {
+            "description": "Center of the body to which the gravity field is attached",
+            "type": "string"
+        },
+        "axes": {
+            "description": "Axes to which the gravity field is attached",
+            "type": "string"
+        },
+        "range": {
+            "description": "Optional max distance above which spherical harmonics are not used  (if not given, SoI is used)",
+            "$ref": "../../../definitions.json#/definitions/scalar"
+        },
+        "order": {
+            "description": "Optional max order (otherwise max available is used)",
+            "type": "integer"
+        },
+        "degree": {
+            "description": "Optional max degree (otherwise max available is used)",
+            "type": "integer"
+        },
+        "rorder": {
+            "description": "Optional max indirect order (otherwise same as degree)",
+            "type": "integer"
+        },
+        "rdegree": {
+            "description": "Optional max indirect degree (otherwise same as order)",
+            "type": "integer"
+        }
+    }
+}

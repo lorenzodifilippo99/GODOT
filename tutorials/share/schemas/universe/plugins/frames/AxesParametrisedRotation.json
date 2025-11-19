@@ -1,0 +1,20 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Universe/Frames/AxesParametrisedRotation",
+    "description": "Configuration for AxesParametrisedAxisRotation axes in frames plugin",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+        "parent",
+        "quat"
+    ],
+    "properties": {
+        "parent": {
+            "description": "Name of axes to be used as parent frame for the parametrised rotation axes",
+            "type": "string"
+        },
+        "quat": {
+            "description": "Vector time evaluable for rotation quaternion (scalar last), either as array of scalar time evaluables or as vector time evaluable."
+        }
+    }
+}

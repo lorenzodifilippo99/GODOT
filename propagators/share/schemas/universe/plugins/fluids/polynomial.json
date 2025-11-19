@@ -1,0 +1,25 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Universe/fluids/polynomial",
+    "description": "Configuration for polynomial liquid model in fluids plugin",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "density_coeffs"
+    ],
+    "properties": {
+        "density_coeffs": {
+            "description": "Density polynomial [kg/m^3, kg/(K*m^3), ..]",
+            "type": "array",
+	    "items": { "type": "number" }
+        },
+        "pressure_coeff": {
+            "description": "Pressure coefficient for vapour pressure [Pa]",
+            "type": "number"
+        },
+        "temperature_coeff": {
+            "description": "Temperature coefficient for vapour pressure [K]",
+            "type": "number"
+        }
+    }
+}

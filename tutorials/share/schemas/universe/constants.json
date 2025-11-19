@@ -1,0 +1,45 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Constants plugin",
+    "description": "Constants definition",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "ephemeris": {
+            "description": "Constants to load from ephemeris objects",
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+                "description": "Configuration for a specific ephemeris to load constants from",
+                "type": "object",
+                "required": [
+                    "source"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                    "source": {
+                        "description": "Ephemeris source object to load constants from",
+                        "type": "string"
+                    },
+                    "mapping": {
+                        "description": "Optional mapping for loaded ephemeris objects",
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "data": {
+            "description": "User defined input of constants. These override previous definitions.",
+            "type": "object",
+            "additionalProperties": {
+                "description": "Value of the user-defined (or overridden) constant",
+                "$ref": "../definitions.json#/definitions/scalar"
+            }
+        },
+        "loadPlanetaryDefaults": {
+            "description": "Load default values for planetary constants",
+            "type": "boolean",
+            "default": true
+        }
+    }
+}

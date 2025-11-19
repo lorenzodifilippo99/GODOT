@@ -1,0 +1,35 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Universe/Frames/AxesParametrisedAxisRotation",
+    "description": "Configuration for AxesParametrisedAxisRotation axes in frames plugin",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+        "parent",
+        "axis",
+        "angle"
+    ],
+    "properties": {
+        "parent": {
+            "description": "Name of axes to be used as parent frame for the parametrised rotation axes",
+            "type": "string"
+        },
+        "axis": {
+            "description": "Fixed rotation axis",
+            "$ref": "../../../definitions.json#/definitions/vector3"
+        },
+        "angle": {
+            "description": "Scalar time evaluable expression for angle",
+            "$ref": "../../../definitions.json#/definitions/scalar"
+        },
+        "partials": {
+            "description": "If you know that the anle evaluable has no non-zero partial derivatives wrt to tracked parameters, you can set this to false for optimisation",
+            "default": true,
+            "type": "boolean"
+        },
+        "delta": {
+            "description": "delta for time derivative of angle using central difference",
+            "$ref": "../../../definitions.json#/definitions/scalar"
+        }
+    }
+}

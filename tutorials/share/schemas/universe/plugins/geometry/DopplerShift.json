@@ -1,0 +1,26 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Universe/Geometry/DopplerShift",
+    "description": "Doppler (Range Rate) [1/sec]",
+    "type": "object",
+    "required": [
+        "observer",
+        "target",
+        "refFreq"
+    ],
+    "additionalProperties": false,
+    "properties": {
+        "target": {
+            "description": "Target, a point in the frames system",
+            "type": "string"
+        },
+        "observer": {
+            "description": "Observer, a point in the frames system",
+            "type": "string"
+        },
+        "refFreq": {
+            "description": "Doppler reference frequency (with frequency units)",
+            "type": "string"
+        }
+    }
+}

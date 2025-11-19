@@ -1,0 +1,21 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Universe/Frames/DirOrthogonal",
+    "description": "Configuration for DirOrthogonal directions in frames plugin (i.e. direction cross product of two existing directions)",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+        "dir1",
+        "dir2"
+    ],
+    "properties": {
+        "dir1": {
+            "description": "Name of direction 1 in frames",
+            "type": "string"
+        },
+        "dir2": {
+            "description": "Name of direction 2 in frames",
+            "type": "string"
+        }
+    }
+}

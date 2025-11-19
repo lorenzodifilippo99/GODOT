@@ -1,0 +1,21 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "allOf": [{ "$ref": "part.json" }],
+    "title": "Universe/shapes/triangulated",
+    "description": "Configuration for triangulated part in shapes plugin",
+    "type": "object",
+    "required": [
+        "vertices",
+        "faces"
+    ],
+    "properties": {
+        "vertices": {
+            "description": "Vertices of triangulared part",
+            "type": "array"
+        },
+        "faces": {
+            "description": "Faces of triangulated part (lists of face numbers)",
+	    "type": "array"
+        }
+    }
+}

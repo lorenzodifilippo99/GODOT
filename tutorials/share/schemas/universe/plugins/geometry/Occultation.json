@@ -1,0 +1,44 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Universe/Geometry/Occultation",
+    "description": "The distance [km] until an occultation occurs, optionally accounting for the light time travel of the signal",
+    "type": "object",
+    "required": [
+        "observer",
+        "occulter",
+        "occulterRadius",
+        "target"
+    ],
+    "additionalProperties": false,
+    "properties": {
+        "observer": {
+            "description": "Observer of the occultation, a point in the frames system",
+            "type": "string"
+        },
+        "occulter": {
+            "description": "Occulter, a point in the frames system",
+            "type": "string"
+        },
+        "occulterRadius": {
+            "description": "Assumed radius for the occulter body (with Length units)",
+            "type": "string"
+        },
+        "target": {
+            "description": "Source of the occulted signal, a point in the frames system",
+            "type": "string"
+        },
+        "solveLightTime": {
+            "description": "Flag to indicate whether to solve for light time",
+            "type": "boolean"
+        },
+        "lightTimeCenter": {
+            "description": "Center for light time solution",
+            "type": "string",
+            "default": "SSB"
+        },
+        "forward": {
+            "description": "Flag to indicate whether to solve for light time forward (true) or backward (false)",
+            "type": "boolean"
+        }
+    }
+}

@@ -1,0 +1,45 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Universe/VectorEvaluables/StateElements",
+    "description": "Orbit State Elements",
+    "type": "object",
+    "required": [
+        "origin",
+        "target",
+        "axes",
+        "stateType"
+    ],
+    "additionalProperties": false,
+    "properties": {
+        "origin": {
+            "description": "Origin point",
+            "type": "string"
+        },
+        "target": {
+            "description": "Target point whose orbit elements are required in origin, axes reference",
+            "type": "string"
+        },
+        "axes": {
+            "description": "Reference system axes",
+            "type": "string"
+        },
+        "stateType": {
+            "description": "Name of the state type to be computed, any of the state types available in godot::astro::StateType ( in Python, type help(godot.core.astro.StateType) for details )",
+            "type": "string"
+        },
+        "propertyData": {
+            "description": "State conversion properties (e.g. gm): a string to scalar time evaluable map",
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "../../../definitions.json#/definitions/scalar"
+            }
+        },
+        "settings": {
+            "description": "State conversion settings (e.g. L1-L3 for Liss): a string to string map",
+            "type": "object",
+            "additionalProperties": {
+                "type": "string"
+            }
+        }
+    }
+}
